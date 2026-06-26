@@ -1,0 +1,18 @@
+.container-fluid{
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, p{
+  color: var(--cffy-theme-primary-a40);
+}
+
+.btn{
+  background-color: var(--cffy-theme-primary-a40);
+  color: var(--cffy-theme-surface-a0);
+  text-decoration: none;
+  display: inline-block;
+}
