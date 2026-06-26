@@ -1,0 +1,54 @@
+<router-outlet>
+  <br>
+    <div class="container-fluid">
+      <div class="container d-flex flex-column" id="carro" style="height: 60vh">
+        <div class="container title p-1 mb-5 d-flex justify-content-start align-items-center">
+          <h2>Carrito de Compras</h2>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center align-items-center" style="width: 100%">
+          <table class="">
+            <thead>
+            <tr>
+              <th scope="col" style="color: var(--cffy-theme-primary-a40)">Producto</th>
+              <th scope="col" style="color: var(--cffy-theme-primary-a40)">Precio Unitario</th>
+              <th class="text-center" scope="col" style="color: var(--cffy-theme-primary-a40)">Acciones</th>
+            </tr>
+            </thead>
+            <tbody id="productos_carrito">
+
+              @for (producto of carrito_compras; track producto.id_producto){
+                <tr>
+                  <td>{{ producto.nombre_producto }}</td>
+                  <td>{{ formatoCLP.format(producto.precio_producto) }}</td>
+                  <td class="text-center">
+                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(producto.id_producto)"><i class="bi bi-trash-fill"></i></button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center">No hay productos en el carrito.</td>
+                </tr>
+              }
+            </tbody>
+            <tfoot id="productos_total">
+            <tr>
+              <td colspan="2" class="text-end"><strong>Total a Pagar:</strong></td>
+              <td class="text-center"><strong>{{ formatoCLP.format(total_final) }}</strong></td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <br>
+        <div class="d-flex justify-content-end align-items-end" id="total_pagar">
+
+        </div>
+        <br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start align-items-md-start flex-md-row-reverse">
+          <button class="btn pt-2 pb-2" id="checkout">Finalizar Compra</button>
+          <button class="btn limpiar pt-2 pb-2 me-2" id="btn_limpiar" (click)="clearCart()">Limpiar</button>
+        </div>
+      </div>
+    </div>
+  <br>
+</router-outlet>

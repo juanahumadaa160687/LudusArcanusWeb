@@ -1,0 +1,37 @@
+<router-outlet>
+  <br>
+
+  <div class="container-fluid d-flex justify-content-center align-items-center flex-column" style="min-height: 60vh;">
+
+    <div class="container-fluid d-md-flex justify-content-end align-items-center d-none" id="categoria_buttons">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Mesa', 'btn-outline-primary': categoria !== 'Juegos de Mesa'}" (click)="navigateTo('Juegos de Mesa')">Juegos de Mesa</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Cartas', 'btn-outline-primary': categoria !== 'Juegos de Cartas'}" (click)="navigateTo('Juegos de Cartas')">Juegos de Cartas</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Rol', 'btn-outline-primary': categoria !== 'Juegos de Rol'}" (click)="navigateTo('Juegos de Rol')">Juegos de Rol</button>
+      </div>
+    </div>
+
+    <div class="container p-1 mb-3 d-flex justify-content-start align-items-center" id="titulo_categoria">
+      <h2 class="mb-0">{{categoria}}</h2>
+    </div>
+    <div class="container mb-5 d-flex justify-content-center align-items-start" style="color: var(--cffy-theme-primary-a40);" id="desc-categoria">
+      <p>Descubre nuestra amplia selección de juegos, desde clásicos hasta los más innovadores. Perfectos para todas las edades y ocasiones, nuestros juegos ofrecen diversión garantizada para amigos y familiares. ¡Explora nuestra colección y encuentra el juego perfecto para tu próxima reunión!</p>
+    </div>
+
+    <div class="row container-fluid d-flex justify-content-center align-items-center" id="categoria_content">
+
+
+        @if (categoria == 'Juegos de Mesa') {
+          <app-juegos-mesa></app-juegos-mesa>
+        } @else if (categoria == 'Juegos de Cartas') {
+          <app-juegos-cartas></app-juegos-cartas>
+        } @else if (categoria == 'Juegos de Rol') {
+          <app-juegos-rol></app-juegos-rol>
+        }
+
+
+    </div>
+  </div>
+
+  <br>
+</router-outlet>

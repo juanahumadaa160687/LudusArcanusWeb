@@ -1,0 +1,35 @@
+table{
+  border-collapse: collapse;
+  width: 100%;
+
+  td{
+    padding: 10px;
+  }
+}
+
+#checkout {
+  color: var(--cffy-theme-surface-a0);
+  background-color: var(--cffy-theme-primary-a40);
+  border: none;
+  cursor: pointer;
+}
+
+#btn_limpiar{
+  background-color: var(--cffy-theme-surface-a0);
+  color: #fff;
+  border: 1px solid var(--cffy-theme-surface-tonal-a40);
+}
+
+@media (min-width: 768px) {
+  #checkout, #btn_limpiar {
+    width: 200px;
+  }
+
+}
+
+@media (max-width: 425px) {
+
+  #checkout, #btn_limpiar {
+    width: 100%;
+  }
+}

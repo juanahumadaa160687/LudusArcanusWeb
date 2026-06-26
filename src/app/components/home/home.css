@@ -1,0 +1,86 @@
+
+#main{
+  background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(0, 0, 0, 0.4)), url("../../../../public/img/board-game.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  position: relative;
+  border: none;
+
+  h1{
+    color: var(--cffy-theme-primary-a40);
+    position: absolute;
+    bottom: 26%;
+    left: 3%;
+  }
+  #welcome-text{
+    color: var(--cffy-theme-primary-a40);
+    position: absolute;
+    bottom: 14%;
+    left: 3%;
+    max-width: 70%;
+  }
+  #buttons{
+    position: absolute;
+    bottom: 7%;
+    left: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  button{
+    background-color: transparent;
+    border: 2px solid var(--cffy-theme-primary-a40);
+    color: var(--cffy-theme-primary-a40);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  button:hover{
+    background-color: var(--cffy-theme-primary-a40);
+    color: var(--cffy-theme-surface-a0);
+  }
+}
+
+@media (max-width: 768px) {
+  #main{
+    background-image: linear-gradient(to top, rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.8)), url("../../../../public/img/board-game.webp");
+
+    h1{
+      font-size: 1.5rem;
+      text-align: center;
+      top: 5%;
+      left: 0;
+      right: 0;
+    }
+    #welcome-text{
+      font-size: 0.8rem;
+      max-width: 100%;
+      text-align: center;
+      padding: 10px;
+      left: 0;
+      right: 0;
+      top: 10%;
+
+    }
+    #buttons{
+      left: 0;
+      right: 0;
+      bottom: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+
+    }
+    button{
+      width: 80%;
+    }
+  }
+
+}

@@ -1,0 +1,98 @@
+<router-outlet>
+  <br>
+  <div class="container d-flex justify-content-center align-items-center">
+
+    <div class="container" id="registro_form">
+      <div class="container-fluid title p-1 mb-4 d-flex justify-content-start align-items-center">
+        <h2 class="mb-0">Editar Perfil</h2>
+      </div>
+      <br>
+      <form id="signup_form" class="row g-3" [formGroup]="editUserForm" (ngSubmit)="saveChanges()">
+
+        <div class="col-md-4">
+          <div class=" mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" name="nombre">
+            @if (editUserForm.get('nombre')?.hasError('required') && editUserForm.get('nombre')?.touched) {
+              <p>
+                <small class="text-danger">**Este campo es obligatorio</small>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" formControlName="apellido" class="form-control" id="apellido" name="apellido">
+            @if (editUserForm.get('apellido')?.hasError('required') && editUserForm.get('apellido')?.touched) {
+              <p>
+                <small class="text-danger">**Este campo es obligatorio</small>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" formControlName="username" class="form-control" id="username" name="username">
+            @if (editUserForm.get('username')?.hasError('required') && editUserForm.get('username')?.touched) {
+              <p>
+                <small class="text-danger">**Este campo es obligatorio</small>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" formControlName="email" class="form-control" id="email" name="email">
+            @if (editUserForm.get('email')?.hasError('required') && editUserForm.get('email')?.touched) {
+              <p>
+                <small class="text-danger">**El correo electrónico es obligatorio</small>
+              </p>
+            } @else if (editUserForm.get('email')?.hasError('email')) {
+              <p>
+                <small class="text-danger">**Ingresa un correo electrónico válido</small>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class=" mb-3">
+            <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" formControlName="birthday" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+            @if (editUserForm.get('birthday')?.hasError('required') && editUserForm.get('birthday')?.touched) {
+              <p>
+                <small class="text-danger">**La fecha de nacimiento es obligatoria</small>
+              </p>
+            } @else if (editUserForm.get('birthday')?.hasError('ageRestriction')) {
+              <p>
+                <small class="text-danger">**Debes tener al menos 18 años para registrarte</small>
+              </p>
+            } @else if (editUserForm.get('birthday')?.hasError('futureDate')) {
+              <p>
+                <small class="text-danger">**La fecha de nacimiento no puede ser en el futuro</small>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class=" mb-3">
+            <label for="address" class="form-label">Dirección de Despacho</label>
+            <input type="text" formControlName="address" class="form-control" id="address" name="address">
+          </div>
+        </div>
+        <div class="col-12 d-grid d-lg-flex justify-content-lg-end align-items-lg-center gap-2">
+          <button class="btn" type="submit">Guardar Cambios</button>
+          <button class="btn btn-limpiar" type="reset">Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+</router-outlet>

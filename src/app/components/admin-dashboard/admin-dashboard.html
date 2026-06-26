@@ -1,0 +1,198 @@
+<router-outlet>
+  <br>
+
+  <div class="container-fluid p-0">
+
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+
+      <div class="container-fluid row gap-3 d-flex justify-content-center align-items-center p-0">
+
+        <div class="col-12 d-flex justify-content-center align-items-start flex-wrap" id="admin_product_forms">
+
+          <div class="card col-md-6 col-sm-12">
+            <div class="card-header pt-3" id="header1">
+              <h5 class="card-title mb-0">Nuevo Administrador</h5>
+            </div>
+            <div class="card-body">
+              <form class="row" id="admin_form" [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+
+                <div class="col-md-12 mb-3">
+                  <label for="admin_nombre">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Nombre" name="admin_nombre" formControlName="adminNombre">
+
+                  @if (adminForm.get('adminNombre')?.hasError('required') && adminForm.get('adminNombre')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label for="admin_apellido">Apellido</label>
+                  <input type="text" class="form-control" placeholder="Apellido" name="admin_apellido" formControlName="adminApellido">
+                  @if (adminForm.get('adminApellido')?.hasError('required') && adminForm.get('adminApellido')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
+                    <input type="email" class="form-control" placeholder="Email" name="admin_email" formControlName="adminEmail">
+                  </div>
+                  @if (adminForm.get('adminEmail')?.hasError('required') && adminForm.get('adminEmail')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  } @else if (adminForm.get('adminEmail')?.hasError('email')) {
+                    <p>
+                      <small class="text-danger">**Ingrese un correo electrónico válido</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <button type="button" class="btn btn-secondary" (click)="showPassword()">
+                      <i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+                    </button>
+                    <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Contraseña" name="admin_password" formControlName="adminPassword" required>
+                  </div>
+                  <div class="form-text"><small id="form-help">La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&#64;$!%*?&)</small></div>
+                  @if (adminForm.get('adminPassword')?.hasError('required') && adminForm.get('adminPassword')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  } @else if (adminForm.get('adminPassword')?.hasError('pattern')) {
+                    <p>
+                      <small class="text-danger">**La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&#64;$!%*?&)</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <button type="button" class="btn btn-secondary" (click)="showConfirmPassword()">
+                      <i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+                    </button>
+                    <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">
+                  </div>
+
+                  @if (adminForm.get('adminConfirmPassword')?.hasError('required') && adminForm.get('adminConfirmPassword')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  } @else if (adminForm.hasError('passwordMismatch')) {
+                    <p>
+                      <small class="text-danger">**Las contraseñas no coinciden</small>
+                    </p>
+                  }
+                </div>
+                <div class="d-grid gap-3">
+                  <button class="btn" type="submit"><i class="bi bi-floppy"></i> Guardar</button>
+                  <button class="btn btn-limpiar" type="reset"><i class="bi bi-x-lg"></i> Limpiar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card col-md-6 col-sm-12">
+            <div class="card-header pt-3" id="header2">
+              <h5 class="card-title mb-0">Nuevo Producto</h5>
+            </div>
+            <div class="card-body">
+              <form class="row" id="product_form" [formGroup]="productosForm" (ngSubmit)="onSubmitProduct()">
+                <div class="col-md-2 mb-3">
+                  <label for="inputId" class="form-label">ID</label>
+                  <input formControlName="id_producto" type="number" class="form-control" name="inputId" placeholder="ID" >
+                  @if (productosForm.get('id_producto')?.hasError('required') && productosForm.get('id_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-5 mb-3">
+                  <label for="productName" class="form-label">Nombre del Producto</label>
+                  <input formControlName="nombre_producto" type="text" class="form-control" name="productName" placeholder="Nombre del Producto" >
+                  @if (productosForm.get('nombre_producto')?.hasError('required') && productosForm.get('nombre_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-5 mb-3">
+                  <label for="productCategory" class="form-label">Categoría del Producto</label>
+                  <select formControlName="categoria_producto" class="form-select" name="productCategory">
+                    <option value="">Categoría</option>
+                    <option value="juegos-mesa">Juegos de Mesa</option>
+                    <option value="juegos-cartas">Juegos de Cartas</option>
+                    <option value="juegos-rol">Juegos de Rol</option>
+                  </select>
+                  @if (productosForm.get('categoria_producto')?.hasError('required') && productosForm.get('categoria_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="productPrice" class="form-label">Precio</label>
+                  <input formControlName="precio_producto" type="number" class="form-control" name="productPrice" placeholder="Precio">
+                  @if (productosForm.get('precio_producto')?.hasError('required') && productosForm.get('precio_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="productStock" class="form-label">Stock</label>
+                  <input formControlName="stock_producto" type="number" class="form-control" name="productStock" placeholder="Stock">
+                  @if (productosForm.get('stock_producto')?.hasError('required') && productosForm.get('stock_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="productImage" class="form-label">URL de la Imagen</label>
+                  <input formControlName="imagen_producto" type="text" class="form-control" name="productImage" placeholder="Imagen">
+                  @if (productosForm.get('imagen_producto')?.hasError('required') && productosForm.get('imagen_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="productDescription" class="form-label">Descripción del Producto</label>
+                  <textarea formControlName="descripcion_producto" class="form-control" name="productDescription" rows="4" placeholder="Descripción"></textarea>
+                  @if (productosForm.get('descripcion_producto')?.hasError('required') && productosForm.get('descripcion_producto')?.touched) {
+                    <p>
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  }
+                </div>
+                <div class="d-grid gap-2">
+                  <button class="btn" type="submit"><i class="bi bi-floppy"></i> Guardar</button>
+                  <button type="reset" class="btn btn-limpiar"><i class="bi bi-x-lg"></i> Limpiar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 container-fluid">
+          <div class="col card">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Productos Registrados</h5>
+            </div>
+            <div class="card-body">
+              <table id="adminTable" class="table table-dark table-hover text-center" style="width: 100%"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+</router-outlet>

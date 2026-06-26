@@ -1,0 +1,88 @@
+<router-outlet>
+  <br>
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+
+      <div class="container">
+
+        @if (forgot_password) {
+          <div class="container d-flex justify-content-center align-items-center" id="forgot-pass">
+            <div class="card p-4" style="width: 100%; max-width: 400px;">
+              <h2 class="mb-4 text-center">Recuperar Contraseña</h2>
+              <form id="forgot_password" class="" [formGroup]="forgotPasswordForm" (ngSubmit)="navigateToForgotPassword()">
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email" formControlName="email">
+                  @if (forgotPasswordForm.get('email')?.hasError('required') && forgotPasswordForm.get('email')?.touched) {
+                    <p >
+                      <small class="text-danger">**Este campo es obligatorio</small>
+                    </p>
+                  } @else if (forgotPasswordForm.get('email')?.hasError('email') && forgotPasswordForm.get('email')?.touched) {
+                    <p>
+                      <small class="text-danger">**Ingresa un correo electrónico válido</small>
+                    </p>
+                  }
+                </div>
+                <br>
+                <div class="mb-3 mt-2 d-flex justify-content-center">
+                  <button type="submit" class="btn" >Recuperar Contraseña</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        } @else {
+
+          <div class="row d-flex flex-wrap" id="sign-in-row">
+
+            <div class="col-6" id="imagen-sesion"></div>
+            <br>
+            <div class="col-6 d-flex justify-content-center align-items-center flex-column" id="form-container">
+
+                <div class="mb-5 pt-4 d-flex justify-content-center align-items-center" style="width: 100%">
+                  <h2>Iniciar Sesión</h2>
+                </div>
+                <form class="row g-3" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+                  <div class="col-12">
+                    <div class="input-group">
+                      <span class="input-group-text">&#64;</span>
+                      <input type="text" id="username" formControlName="username" class="form-control" placeholder="Nombre de usuario">
+                    </div>
+                    @if (signInForm.get('username')?.hasError('required') && signInForm.get('username')?.touched) {
+                      <p>
+                        <small class="text-danger">**Este campo es obligatorio</small>
+                      </p>
+                    }
+                  </div>
+
+                  <div class="col-12 mb-5">
+                    <div class="input-group">
+                      <button class="btn" type="button" (click)="verPassword()"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                      <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
+                    </div>
+                    @if (signInForm.get('password')?.hasError('required') && signInForm.get('password')?.touched) {
+                      <p>
+                        <small class="text-danger">**Este campo es obligatorio</small>
+                      </p>
+                    }
+                  </div>
+
+                  <div class="container-fluid d-flex justify-content-center align-items-center mb-2">
+                    <p class="text-center" id="forgot-pass-text">¿Olvidaste tu contraseña? <a routerLink="/forgot-password">Recupérala aquí</a></p>
+                  </div>
+
+                  <div class="d-grid gap-2 d-lg-flex justify-content-lg-center align-items-lg-center flex-lg-column mb-lg-4">
+                    <button type="submit" class="btn session">Iniciar Sesión</button>
+                    <button type="reset" class="btn btn-limpiar">Limpiar</button>
+                  </div>
+
+                  <div class="container-fluid d-flex justify-content-center align-items-center" id="forgot-pass">
+                    <p class="text-center" id="no-account">¿No tienes una cuenta? <a routerLink="/sign-up">Regístrate aquí</a></p>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+        }
+      </div>
+  </div>
+  <br>
+</router-outlet>

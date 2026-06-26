@@ -1,0 +1,127 @@
+<router-outlet>
+  <br>
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 60vh">
+
+    <div class="container">
+      <div class="row" id="sign-up-form">
+        <div class="col-6" id="imagen-registro"></div>
+
+        <div class="col-6 ps-4 pe-4 pb-4" id="registro-form">
+          <div class="mb-2 pt-4 d-flex justify-content-start align-items-start flex-column" style="width: 100%" id="title_registro">
+            <h2 class="text-start">Registro de Usuario</h2>
+          </div>
+          <br>
+          <div class="">
+            <form class="row g-4" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+              <div class="col-md-6">
+                <label for="inputName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="inputName" formControlName="nombre">
+                @if (signUpForm.get('nombre')?.hasError('required') && signUpForm.get('nombre')?.touched) {
+                  <p>
+                    <small class="text-danger">**Este campo es obligatorio.</small>
+                  </p>
+                }
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputLastName" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="inputLastName" formControlName="apellido">
+                @if (signUpForm.get('apellido')?.hasError('required') && signUpForm.get('apellido')?.touched) {
+                  <p>
+                    <small class="text-danger">**Este campo es obligatorio.</small>
+                  </p>
+                }
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputEmail" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                @if (signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched) {
+                  <p>
+                    <small class="text-danger">**Este campo es obligatorio.</small>
+                  </p>
+                }
+                @else if (signUpForm.get('email')?.hasError('email')) {
+                  <p>
+                    <small class="text-danger">**Ingrese un correo electrónico válido.</small>
+                  </p>
+                }
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="inputFechaNacimiento" formControlName="fecha_nacimiento">
+                @if (signUpForm.get('fecha_nacimiento')?.hasError('required') && signUpForm.get('fecha_nacimiento')?.touched) {
+                  <p>
+                    <small class="text-danger">**Este campo es obligatorio.</small>
+                  </p>
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('invalidDate')) {
+                  <p>
+                    <small class="text-danger">**Ingrese una fecha de nacimiento válida.</small>
+                  </p>
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('ageRequirement')) {
+                  <p>
+                    <small class="text-danger">**Debes tener al menos 18 años para registrarte.</small>
+                  </p>
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('futureDate')) {
+                  <p>
+                    <small class="text-danger">**La fecha de nacimiento no puede ser en el futuro.</small>
+                  </p>
+                }
+
+              </div>
+
+              <div class="col-md-12">
+                <label for="inputDireccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="inputDireccion" formControlName="direccion">
+                <div class="form-text text-end">*Opcional</div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group">
+                  <button class="btn" type="button" (click)="verPassword()"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
+                </div>
+                @if (signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched) {
+                  <p>
+                    <small class="text-danger">**Este campo es obligatorio.</small>
+                  </p>
+                } @else if (signUpForm.get('password')?.hasError('pattern')) {
+                  <p>
+                    <small class="text-danger">**La contraseña debe tener entre 6 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).</small>
+                  </p>
+                }
+                <div class="form-text">
+                  La contraseña debe tener entre 6 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group">
+                  <button class="btn" type="button" (click)="verConfirmPassword()"><i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
+                </div>
+
+                @if (signUpForm.get('confirmPassword')?.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched) {
+                  <p>
+                    <small class="text-danger">*Las contraseñas no coinciden.</small>
+                  </p>
+                }
+              </div>
+              <br>
+              <div class="d-grid gap-3" id="buttons">
+                <button type="submit" class="btn">Guardar</button>
+                <button type="reset" class="btn btn-limpiar">Limpiar</button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+</router-outlet>

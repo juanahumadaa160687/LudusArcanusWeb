@@ -1,0 +1,21 @@
+<router-outlet>
+
+  <div id="main" class="container-fluid" style="height: 80vh; position: relative">
+
+    <h1>Bienvenido a Ludus Arcanus</h1>
+    <div id="welcome-text">
+      <p>En Ludus Arcanus, nos apasiona el mundo de los juegos de mesa, cartas y rol. Nuestra misión es ofrecer a
+        nuestros clientes una experiencia de compra única, con una amplia selección de productos de alta calidad,
+        desde los clásicos hasta las últimas novedades del mercado. ¡Explora nuestra tienda y
+        descubre el universo de diversión que tenemos para ti!
+      </p>
+    </div>
+    <div  id="buttons">
+      <button class="" (click)="navigateToCategory('juegos-mesa')">Juegos de Mesa</button>
+      <button class="" (click)="navigateToCategory('juegos-cartas')">Juegos de Cartas</button>
+      <button (click)="navigateToCategory('juegos-rol')">Juegos de Rol</button>
+    </div>
+
+  </div>
+
+</router-outlet>

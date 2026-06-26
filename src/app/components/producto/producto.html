@@ -1,0 +1,29 @@
+<router-outlet>
+  <br>
+
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row g-3 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center" style="border: none;">
+          <img ngSrc="/{{producto.categoria_producto}}/{{producto.imagen_producto}}" alt="" width="500" height="500" class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center align-items-lg-start gap-3">
+          <h2>{{ producto.nombre_producto }}</h2>
+
+          <p>{{ producto.descripcion_producto }}</p>
+
+          <p>
+            Stock: {{ producto.stock_producto }} unidades
+          </p>
+
+          <p><strong>Precio:</strong> {{ formatoCLP.format(producto.precio_producto) }}</p>
+
+          <button class="buy" (click)="agregarCarrito(producto.id_producto)"><i class="bi bi-cart4"></i> Comprar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+</router-outlet>

@@ -1,3 +1,104 @@
 import { Routes } from '@angular/router';
+import {Home} from './components/home/home';
+import {Categorias} from './components/categorias/categorias';
+import {Producto} from './components/producto/producto';
+import {SignIn} from './components/sign-in/sign-in';
+import {SignUp} from './components/sign-up/sign-up';
+import {ShoppingCart} from './components/shopping-cart/shopping-cart';
+import {Privacy} from './components/privacy/privacy';
+import {TermnsConditions} from './components/termns-conditions/termns-conditions';
+import {AdminDashboard} from './components/admin-dashboard/admin-dashboard';
+import {UserProfile} from './components/user-profile/user-profile';
+import {EditProfile} from './components/edit-profile/edit-profile';
+import {ForgotPassword} from './components/forgot-password/forgot-password';
+import {JuegosMesa} from './components/juegos-mesa/juegos-mesa';
+import {JuegosCartas} from './components/juegos-cartas/juegos-cartas';
+import {JuegosRol} from './components/juegos-rol/juegos-rol';
+import {contentChild} from '@angular/core';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+
+  {
+    path: 'home',
+    component: Home,
+    title: 'Ludus Arcanus - Tienda de Juegos de Mesa, Cartas y Rol',
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'categoria/:categoria',
+    component: Categorias,
+    title: 'Categorías',
+    children: [
+      {
+        path: 'juegos-mesa',
+        component: JuegosMesa,
+        title: 'Juegos de Mesa'
+      },
+      {
+        path: 'juegos-cartas',
+        component: JuegosCartas,
+        title: 'Juegos de Cartas'
+      },
+      {
+        path: 'juegos-rol',
+        component: JuegosRol,
+        title: 'Juegos de Rol'
+      }
+    ]
+  },
+  {
+    path: 'producto/:id',
+    component: Producto,
+    title: 'Productos'
+  },
+  {
+    path: 'sign-in',
+    component: SignIn,
+    title: 'Iniciar Sesión'
+  },
+  {
+    path: 'sign-up',
+    component: SignUp,
+    title: 'Registrarse'
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCart,
+    title: 'Carrito de Compras'
+  },
+  {
+    path: 'privacidad',
+    component: Privacy,
+    title: 'Política de Privacidad'
+  },
+  {
+    path: 'terminos-condiciones',
+    component: TermnsConditions,
+    title: 'Términos y Condiciones'
+  },
+  {
+    path: 'administradores',
+    component: AdminDashboard,
+    title: 'Administradores'
+  },
+  {
+    path: 'profile',
+    component: UserProfile,
+    title: 'Perfil de Usuario'
+  },
+  {
+    path: 'edit-profile/:username',
+    component: EditProfile,
+    title: 'Editar Perfil'
+  },
+  {
+    path: 'reset-password/:email',
+    component: ForgotPassword,
+    title: 'Restablecer Contraseña'
+  }
+
+];
