@@ -7,13 +7,12 @@
         <div class="row d-flex justify-content-center align-items-start flex-wrap" >
 
           <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center flex-column" id="container-profile">
-            <h4 class="">Aaaa Bbbb{{nombre}} {{apellido}}</h4>
+            <h4 class="">Aaaa Bbbb{{user.nombre}} {{user.apellido}}</h4>
             <div class="col card" style="width: 100%">
               <div class="card-body" style="width: 100%">
-                <p class="card-text mb-4"><i class="bi bi-person-fill"></i> &#64;dfsadfdfdsf{{username}}</p>
-                <p class="card-text mb-4"><i class="bi bi-envelope-fill"></i> fafdfsfsa{{email}}</p>
-                <p class="card-text mb-4"><i class="bi bi-calendar-fill"></i> afsdafasdfdf{{fecha_nacimiento}}</p>
-                <p class="card-text"><i class="bi bi-geo-alt-fill"></i> fdsgfdgg{{direccion}}</p>
+                <p class="card-text mb-4"><i class="bi bi-envelope-fill"></i> fafdfsfsa{{user.email}}</p>
+                <p class="card-text mb-4"><i class="bi bi-calendar-fill"></i> afsdafasdfdf{{user.fecha_nacimiento}}</p>
+                <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{user.direccion || 'Sin Dirección de Despacho'}}</p>
               </div>
             </div>
             <br>
@@ -22,9 +21,9 @@
                 <p class="card-text mb-2"><i class="bi bi-gear"></i> Opciones</p>
               </div>
               <div class="card-body d-flex justify-content-start align-items-start flex-column" style="width: 100%">
-                <a class="card-text mb-4" role="button" routerLink="/edit-profile/{{username}}"><i class="bi bi-pencil-square"></i> Editar Perfil</a>
-                <a class="card-text mb-4" role="button" (click)="cambiarPassword(email)"><i class="bi bi-key"></i> Cambiar Password</a>
-                <a class="card-text" role="button" (click)="deleteProfile()"><i class="bi bi-trash-fill"></i> Eliminar Cuenta</a>
+                <a class="card-text mb-4" role="button" routerLink="/edit-profile/{{user.email}}"><i class="bi bi-pencil-square"></i> Editar Perfil</a>
+                <a class="card-text mb-4" role="button" routerLink="/reset-password/{{user.email}}"><i class="bi bi-key"></i> Cambiar Password</a>
+                <a class="card-text" role="button" (click)="userProfileService.deleteUser(user)"><i class="bi bi-trash-fill"></i> Eliminar Cuenta</a>
               </div>
             </div>
           </div>

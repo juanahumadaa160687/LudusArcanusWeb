@@ -5,9 +5,9 @@
 
     <div class="container-fluid d-md-flex justify-content-end align-items-center d-none" id="categoria_buttons">
       <div class="btn-group" role="group">
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Mesa', 'btn-outline-primary': categoria !== 'Juegos de Mesa'}" (click)="navigateTo('Juegos de Mesa')">Juegos de Mesa</button>
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Cartas', 'btn-outline-primary': categoria !== 'Juegos de Cartas'}" (click)="navigateTo('Juegos de Cartas')">Juegos de Cartas</button>
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Rol', 'btn-outline-primary': categoria !== 'Juegos de Rol'}" (click)="navigateTo('Juegos de Rol')">Juegos de Rol</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Mesa', 'btn-outline-primary': categoria !== 'Juegos de Mesa'}" routerLink="/categoria/juegos-mesa">Juegos de Mesa</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Cartas', 'btn-outline-primary': categoria !== 'Juegos de Cartas'}" routerLink="/categoria/juegos-cartas">Juegos de Cartas</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Rol', 'btn-outline-primary': categoria !== 'Juegos de Rol'}" routerLink="/categoria/juegos-rol">Juegos de Rol</button>
       </div>
     </div>
 

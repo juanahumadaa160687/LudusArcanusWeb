@@ -11,7 +11,7 @@
             <p class="card-text mb-2"><small><strong>Precio:</strong> {{formatoCLP.format(juego.precio_producto)}}</small></p>
             <div class="d-flex gap-2">
               <a class="btn" role="button" routerLink="/producto/{{juego.id_producto}}">Ver Detalles</a>
-              <button class="buy" (click)="comprarJuego(juego.id_producto)"><i class="bi bi-cart4"></i> </button>
+              <button class="buy" [ngClass]="{'disabled': juego.stock_producto === 0}" (click)="shoppingCartService.buyProduct(juego.id_producto)"><i class="bi bi-cart4"></i> </button>
             </div>
           </div>
         </div>

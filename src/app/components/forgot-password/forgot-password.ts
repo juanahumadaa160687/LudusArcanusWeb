@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import {RecoverPassword} from '../../services/password/recover-password';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,9 +19,7 @@ export class ForgotPassword {
 
   user_email: string = '';
 
-  users = JSON.parse(localStorage.getItem('users') || '[]');
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private recoverPasswordService: RecoverPassword) {
 
     this.user_email = this.activatedRoute.snapshot.paramMap.get('email') || '';
 
@@ -30,40 +29,14 @@ export class ForgotPassword {
     })
   }
 
-  recoverPassword(): void {
+  onSubmit() {
 
-    let user = this.users.find((user: any) => user.email === this.user_email);
+    if (this.changePasswordForm.valid) {
+      const password = this.changePasswordForm.get('password')?.value;
 
-    let newUser = {
-      nombre: user.nombre,
-      apellido: user.apellido,
-      username: user.username,
-      email: user.email,
-      password: this.changePasswordForm.get('password')?.value,
-      direccion: user.direccion,
-      fecha_nacimiento: user.fecha_nacimiento,
+      this.recoverPasswordService.recoverPassword(this.user_email, password);
     }
 
-    this.users.splice(this.users.indexOf(user), 1);
-
-    this.users.push(newUser);
-
-    localStorage.setItem('users', JSON.stringify(this.users));
-
-    Swal.fire({
-      title: 'Contraseña cambiada',
-      text: 'Tu contraseña ha sido cambiada correctamente',
-      icon: 'success',
-      showConfirmButton: true,
-    }).then(() => {
-      sessionStorage.clear();
-      this.router.navigate(['/sign-in']);
-    });
-
-  }
-
-  navigateToForgotPassword() {
-    this.router.navigate(['/reset-password/'+this.user_email]);
   }
 
 }

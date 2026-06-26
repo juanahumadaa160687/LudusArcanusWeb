@@ -1,6 +1,7 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, SimpleChanges} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgOptimizedImage} from '@angular/common';
+import {SignInService} from './services/auth/sign-in';
 
 @Component({
   selector: 'app-root',
@@ -14,22 +15,18 @@ export class App {
   year = new Date().getFullYear();
 
   user_role = sessionStorage.getItem('role') || '';
-  user_username = sessionStorage.getItem('username') || '';
+  user_email = sessionStorage.getItem('email') || ''.split('@')[0];
+  email = sessionStorage.getItem('email') || '';
 
-  carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+  carrito: number = JSON.parse(localStorage.getItem('carrito') || '[]').length;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private signInService: SignInService) {
+
   }
 
   ngOnInit() {
-    if (this.carrito.length > 0) {
-
-      let carro = document.getElementById('carro') as HTMLAnchorElement;
-      carro.classList.add('position-relative');
-      carro.innerHTML = `<span class="badge bg-danger position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle">${this.carrito.length}</span> <span class="visually-hidden">items en carrito</span>`;
-
-    }
   }
+
 
   cerrarSesion() {
     sessionStorage.clear();

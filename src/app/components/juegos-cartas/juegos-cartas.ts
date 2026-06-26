@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import Swal from 'sweetalert2';
+import {NgClass} from '@angular/common';
+import {ShoppingCartService} from '../../services/cart/shopping-cart';
 
 @Component({
   selector: 'app-juegos-cartas',
   standalone: true,
   imports: [
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    NgClass
   ],
   templateUrl: './juegos-cartas.html',
   styleUrl: './juegos-cartas.css',
@@ -22,29 +25,6 @@ export class JuegosCartas {
 
   productos = JSON.parse(localStorage.getItem('productos') || '[]');
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, protected shoppingCartService: ShoppingCartService) {}
 
-  comprarJuego(id: number) {
-
-    let producto = this.productos.find((j: any) => j.id_producto === id);
-
-    if (producto) {
-      let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-
-      carrito.push(producto);
-
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Producto agregado',
-        text: 'El producto se ha agregado al carrito correctamente.',
-        confirmButtonText: 'Aceptar',
-        theme: "dark"
-      }).then((result) => {
-        location.reload();
-      })
-    }
-
-  }
 }

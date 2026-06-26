@@ -22,7 +22,7 @@
                   <td>{{ producto.nombre_producto }}</td>
                   <td>{{ formatoCLP.format(producto.precio_producto) }}</td>
                   <td class="text-center">
-                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(producto.id_producto)"><i class="bi bi-trash-fill"></i></button>
+                    <button class="btn btn-danger btn-sm" (click)="shoppingCartService.deleteProduct(producto.id_producto)"><i class="bi bi-trash-fill"></i></button>
                   </td>
                 </tr>
               } @empty {
@@ -46,7 +46,7 @@
         <br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start align-items-md-start flex-md-row-reverse">
           <button class="btn pt-2 pb-2" id="checkout">Finalizar Compra</button>
-          <button class="btn limpiar pt-2 pb-2 me-2" id="btn_limpiar" (click)="clearCart()">Limpiar</button>
+          <button class="btn limpiar pt-2 pb-2 me-2" id="btn_limpiar" (click)="shoppingCartService.clearCart()">Limpiar</button>
         </div>
       </div>
     </div>

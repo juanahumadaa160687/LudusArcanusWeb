@@ -14,7 +14,8 @@ import {ForgotPassword} from './components/forgot-password/forgot-password';
 import {JuegosMesa} from './components/juegos-mesa/juegos-mesa';
 import {JuegosCartas} from './components/juegos-cartas/juegos-cartas';
 import {JuegosRol} from './components/juegos-rol/juegos-rol';
-import {contentChild} from '@angular/core';
+import {NotFound} from './components/not-found/not-found';
+import {authGuard} from './guards/auth-guard';
 
 export const routes: Routes = [
 
@@ -58,7 +59,7 @@ export const routes: Routes = [
   {
     path: 'sign-in',
     component: SignIn,
-    title: 'Iniciar Sesión'
+    title: 'Iniciar Sesión',
   },
   {
     path: 'sign-up',
@@ -68,7 +69,8 @@ export const routes: Routes = [
   {
     path: 'shopping-cart',
     component: ShoppingCart,
-    title: 'Carrito de Compras'
+    title: 'Carrito de Compras',
+    canActivate: [authGuard]
   },
   {
     path: 'privacidad',
@@ -83,22 +85,30 @@ export const routes: Routes = [
   {
     path: 'administradores',
     component: AdminDashboard,
-    title: 'Administradores'
+    title: 'Administradores',
+    canActivate: [authGuard]
   },
   {
-    path: 'profile',
+    path: 'profile/:email',
     component: UserProfile,
-    title: 'Perfil de Usuario'
+    title: 'Perfil de Usuario',
+    canActivate: [authGuard]
   },
   {
-    path: 'edit-profile/:username',
+    path: 'edit-profile/:email',
     component: EditProfile,
-    title: 'Editar Perfil'
+    title: 'Editar Perfil',
+    canActivate: [authGuard]
   },
   {
     path: 'reset-password/:email',
     component: ForgotPassword,
-    title: 'Restablecer Contraseña'
+    title: 'Restablecer Contraseña',
+    canActivate: [authGuard]
+  },
+  {
+    path: '**',
+    component: NotFound
   }
 
 ];

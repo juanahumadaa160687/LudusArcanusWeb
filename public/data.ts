@@ -168,3 +168,9 @@ export const productos = [
   }
 ]
 
+export let pedidos =
+  [{id: 1, fecha: '2024-06-01', precio: 100.00, estado: 'Enviado'},
+    {id: 2, fecha: '2024-06-02', precio: 50.00, estado: 'Pendiente'},
+    {id: 3, fecha: '2024-06-03', precio: 70.00, estado: 'Enviado'},
+    {id: 4, fecha: '2024-06-04', precio: 70.00, estado: 'Enviado'},
+    {id: 5, fecha: '2024-06-05', precio: 70.00, estado: 'Enviado'}];

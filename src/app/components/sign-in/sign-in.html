@@ -41,19 +41,23 @@
                 </div>
                 <form class="row g-3" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
 
-                  <div class="col-12">
+                  <div class="col-12 d-flex justify-content-center align-items-center mb-3">
                     <div class="input-group">
                       <span class="input-group-text">&#64;</span>
-                      <input type="text" id="username" formControlName="username" class="form-control" placeholder="Nombre de usuario">
+                      <input type="text" id="email" formControlName="email" class="form-control" placeholder="Correo electrónico">
                     </div>
-                    @if (signInForm.get('username')?.hasError('required') && signInForm.get('username')?.touched) {
+                    @if (signInForm.get('email')?.hasError('required') && signInForm.get('email')?.touched) {
                       <p>
                         <small class="text-danger">**Este campo es obligatorio</small>
+                      </p>
+                    } @else if (signInForm.get('email')?.hasError('email')) {
+                      <p>
+                        <small class="text-danger">**Ingresa un correo electrónico válido</small>
                       </p>
                     }
                   </div>
 
-                  <div class="col-12 mb-5">
+                  <div class="col-12 d-flex justify-content-center align-items-center mb-5">
                     <div class="input-group">
                       <button class="btn" type="button" (click)="verPassword()"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                       <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
@@ -66,7 +70,7 @@
                   </div>
 
                   <div class="container-fluid d-flex justify-content-center align-items-center mb-2">
-                    <p class="text-center" id="forgot-pass-text">¿Olvidaste tu contraseña? <a routerLink="/forgot-password">Recupérala aquí</a></p>
+                    <p class="text-center" id="forgot-pass-text">¿Olvidaste tu contraseña? <a (click)="recoverPassword()">Recupérala aquí</a></p>
                   </div>
 
                   <div class="d-grid gap-2 d-lg-flex justify-content-lg-center align-items-lg-center flex-lg-column mb-lg-4">

@@ -7,7 +7,7 @@
         <h2 class="mb-0">Editar Perfil</h2>
       </div>
       <br>
-      <form id="signup_form" class="row g-3" [formGroup]="editUserForm" (ngSubmit)="saveChanges()">
+      <form id="signup_form" class="row g-3" [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
         <div class="col-md-4">
           <div class=" mb-3">
@@ -26,18 +26,6 @@
             <label for="apellido" class="form-label">Apellido</label>
             <input type="text" formControlName="apellido" class="form-control" id="apellido" name="apellido">
             @if (editUserForm.get('apellido')?.hasError('required') && editUserForm.get('apellido')?.touched) {
-              <p>
-                <small class="text-danger">**Este campo es obligatorio</small>
-              </p>
-            }
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" formControlName="username" class="form-control" id="username" name="username">
-            @if (editUserForm.get('username')?.hasError('required') && editUserForm.get('username')?.touched) {
               <p>
                 <small class="text-danger">**Este campo es obligatorio</small>
               </p>
@@ -69,9 +57,9 @@
               <p>
                 <small class="text-danger">**La fecha de nacimiento es obligatoria</small>
               </p>
-            } @else if (editUserForm.get('birthday')?.hasError('ageRestriction')) {
+            } @else if (editUserForm.get('birthday')?.hasError('min')) {
               <p>
-                <small class="text-danger">**Debes tener al menos 18 años para registrarte</small>
+                <small class="text-danger">**Debes tener al menos 13 años para registrarte</small>
               </p>
             } @else if (editUserForm.get('birthday')?.hasError('futureDate')) {
               <p>

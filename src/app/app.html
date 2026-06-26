@@ -10,10 +10,20 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/home">Home</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/categoria/juegos-mesa">Juegos de Mesa</a></li>
+              <li><a class="dropdown-item" routerLink="/categoria/juegos-cartas">Juegos de Cartas</a></li>
+              <li><a class="dropdown-item" routerLink="/categoria/juegos-rol">Juegos de Rol</a></li>
+            </ul>
+          </li>
 
           @if (user_role == 'administrador') {
             <li class="nav-item">
-              <a class="nav-link" routerLink="/administradores" tabindex="-1">Bienvenido {{user_username}}</a>
+              <a class="nav-link" routerLink="/administradores" tabindex="-1">Bienvenido {{user_email}}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="#" tabindex="-1" role="button" (click)="cerrarSesion()">Cerrar Sesión</a>
@@ -24,22 +34,11 @@
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Categorías
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/categoria/juegos-mesa">Juegos de Mesa</a></li>
-                <li><a class="dropdown-item" href="/categoria/juegos-cartas">Juegos de Cartas</a></li>
-                <li><a class="dropdown-item" href="/categoria/juegos-rol">Juegos de Rol</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Bienvenido {{user_username}}
+                Bienvenido {{user_email}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" routerLink="/profile">Ver Perfil</a></li>
-                <li><a class="dropdown-item" routerLink="/editar-perfil/{{user_username}}">Editar Perfil</a></li>
+                <li><a class="dropdown-item" routerLink="/editar-perfil/{{email}}">Editar Perfil</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="nav-link" routerLink="#" tabindex="-1" role="button" (click)="cerrarSesion()">Cerrar Sesión</a></li>
               </ul>
@@ -50,16 +49,6 @@
             </li>
 
           } @else {
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Categorías
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/categoria/juegos-mesa">Juegos de Mesa</a></li>
-                <li><a class="dropdown-item" href="/categoria/juegos-cartas">Juegos de Cartas</a></li>
-                <li><a class="dropdown-item" href="/categoria/juegos-rol">Juegos de Rol</a></li>
-              </ul>
-            </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/sign-in" tabindex="-1">Iniciar Sesión</a>
             </li>

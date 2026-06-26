@@ -76,6 +76,14 @@ span{
   font-size: medium;
 }
 
+.form-control{
+  height: 50px !important;
+}
+
+.input-group{
+  width: 350px;
+}
+
 @media (max-width: 768px) {
   .container{
     display: flex;
@@ -123,6 +131,10 @@ span{
 
   #forgot-pass-text{
     font-size: small;
+  }
+
+  .input-group{
+    width: 100%;
   }
 
 }

@@ -46,6 +46,10 @@
                   <p>
                     <small class="text-danger">**Ingrese un correo electrónico válido.</small>
                   </p>
+                } @else if (signUpForm.get('email')?.hasError('emailExists')) {
+                  <p>
+                    <small class="text-danger">**Este correo electrónico ya está registrado.</small>
+                  </p>
                 }
               </div>
 
@@ -56,13 +60,9 @@
                   <p>
                     <small class="text-danger">**Este campo es obligatorio.</small>
                   </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('invalidDate')) {
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('min')) {
                   <p>
-                    <small class="text-danger">**Ingrese una fecha de nacimiento válida.</small>
-                  </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('ageRequirement')) {
-                  <p>
-                    <small class="text-danger">**Debes tener al menos 18 años para registrarte.</small>
+                    <small class="text-danger">**Debes tener al menos 13 años para registrarte.</small>
                   </p>
                 } @else if (signUpForm.get('fecha_nacimiento')?.hasError('futureDate')) {
                   <p>
@@ -80,7 +80,7 @@
 
               <div class="col-md-6">
                 <div class="input-group">
-                  <button class="btn" type="button" (click)="verPassword()"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <button class="btn" type="button" (click)="verPassword('password')"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                   <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
                 </div>
                 @if (signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched) {
@@ -99,7 +99,7 @@
 
               <div class="col-md-6">
                 <div class="input-group">
-                  <button class="btn" type="button" (click)="verConfirmPassword()"><i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <button class="btn" type="button"><i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                   <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
                 </div>
 
