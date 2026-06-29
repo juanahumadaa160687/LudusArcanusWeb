@@ -1,0 +1,1494 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ludus-arcanus-web documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ludus-arcanus-web documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AdminDashboard</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/components/admin-dashboard/admin-dashboard.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-admin-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./admin-dashboard.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./admin-dashboard.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./admin-dashboard.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#adminForm" >adminForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#editProductosForm" >editProductosForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#hideConfirmPassword" >hideConfirmPassword</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#hidePassword" >hidePassword</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#productoId" >productoId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#productos" >productos</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#productosForm" >productosForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#deleteProducto" >deleteProducto</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onSubmitProduct" >onSubmitProduct</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.dev/api/router/Router" target="_blank">Router</a>, formBuilder: <a href="https://angular.dev/api/forms/FormBuilder" target="_blank">FormBuilder</a>, signUpService: <a href="../injectables/SignUpService.html" target="_self">SignUpService</a>, dashboardService: <a href="../injectables/DashboardService.html" target="_self">DashboardService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.dev/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.dev/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>signUpService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SignUpService.html" target="_self" >SignUpService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dashboardService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DashboardService.html" target="_self" >DashboardService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteProducto"></a>
+                    <span class="name">
+                        <span ><b>deleteProducto</b></span>
+                        <a href="#deleteProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteProducto(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:236</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmitProduct"></a>
+                    <span class="name">
+                        <span ><b>onSubmitProduct</b></span>
+                        <a href="#onSubmitProduct"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmitProduct()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adminForm"></a>
+                    <span class="name">
+                        <span ><b>adminForm</b></span>
+                        <a href="#adminForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editProductosForm"></a>
+                    <span class="name">
+                        <span ><b>editProductosForm</b></span>
+                        <a href="#editProductosForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hideConfirmPassword"></a>
+                    <span class="name">
+                        <span ><b>hideConfirmPassword</b></span>
+                        <a href="#hideConfirmPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hidePassword"></a>
+                    <span class="name">
+                        <span ><b>hidePassword</b></span>
+                        <a href="#hidePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productoId"></a>
+                    <span class="name">
+                        <span ><b>productoId</b></span>
+                        <a href="#productoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>JSON.parse(localStorage.getItem(&#x27;productos&#x27;) || &#x27;[]&#x27;).length + 1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productos"></a>
+                    <span class="name">
+                        <span ><b>productos</b></span>
+                        <a href="#productos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>JSON.parse(localStorage.getItem(&#x27;productos&#x27;) || &#x27;[]&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productosForm"></a>
+                    <span class="name">
+                        <span ><b>productosForm</b></span>
+                        <a href="#productosForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/admin-dashboard/admin-dashboard.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import {RouterOutlet, Router} from &#x27;@angular/router&#x27;;
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from &#x27;@angular/forms&#x27;;
+import DataTable from &#x27;datatables.net-bs5&#x27;;
+import &#x27;datatables.net-buttons-bs5&#x27;;
+import &#x27;datatables.net-responsive-bs5&#x27;;
+import Swal from &#x27;sweetalert2&#x27;;
+import {NgClass} from &#x27;@angular/common&#x27;;
+import {passwordNotMatchValidator, emailExistsValidator, imagenProductoExtension} from &#x27;../../functions/validators&#x27;;
+import {SignUpService} from &#x27;../../services/sign-up/sign-up-service&#x27;;
+import {DashboardService} from &#x27;../../services/admin/dashboard-service&#x27;;
+import {formatoCLP} from &#x27;../../functions/currencyFormat&#x27;;
+
+@Component({
+  selector: &#x27;app-admin-dashboard&#x27;,
+  imports: [
+    RouterOutlet,
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+  ],
+  templateUrl: &#x27;./admin-dashboard.html&#x27;,
+  styleUrl: &#x27;./admin-dashboard.css&#x27;,
+})
+export class AdminDashboard {
+
+  //@description Formulario para ingresar un nuevo administrador
+  adminForm!: FormGroup;
+
+  //@description Formulario para ingresar un nuevo producto
+  productosForm!: FormGroup;
+
+  //@description Formulario para editar un producto
+  editProductosForm!: FormGroup;
+
+  /*
+  * @description ID del producto, se obtiene a partir del número de productos almacenados en el localStorage.
+  * De esta forma el ID se genera de forma dinámica.
+  */
+  productoId: number &#x3D; JSON.parse(localStorage.getItem(&#x27;productos&#x27;) || &#x27;[]&#x27;).length + 1;
+
+  productos &#x3D; JSON.parse(localStorage.getItem(&#x27;productos&#x27;) || &#x27;[]&#x27;)
+
+  /*
+   * @description Variable de tipo booleano para mostrar u ocultar la contraseña en el formulario de registro de administrador.
+   */
+  hidePassword &#x3D; true;
+  hideConfirmPassword &#x3D; true;
+
+  constructor(private router: Router, private formBuilder: FormBuilder, protected signUpService: SignUpService, private dashboardService: DashboardService) {
+
+    /*
+     * @description Formulario para ingresar un nuevo administrador y sus respectivos validadores
+     * Validadores personalizados:
+     * emailExistsValidator: Verifica si el correo electrónico ingresado ya existe. Devuelve true si el email existe o null si no existe.
+     * passwordNoMatchValidator: Verifica si las contraseñas ingresadas no coinciden. Devuelve true si las contraseñas no coinciden o null si coinciden.
+     */
+    this.adminForm &#x3D; this.formBuilder.group({
+      adminNombre: [&#x27;&#x27;, Validators.required],
+      adminApellido: [&#x27;&#x27;, Validators.required],
+      adminEmail: [&#x27;&#x27;, [Validators.required, Validators.email, emailExistsValidator()]],
+      adminPassword: [&#x27;&#x27;, [Validators.required, Validators.pattern(&#x27;^(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*\\d)(?&#x3D;.*[@$!%*?&amp;])[A-Za-z\\d@$!%*?&amp;]{6,18}$&#x27;)]],
+      adminConfirmPassword: [&#x27;&#x27;, [Validators.required, passwordNotMatchValidator()]],
+    });
+
+    /*
+     * @description Formulario para ingresar un nuevo producto y sus respectivos validadores
+     * Validador personalizado:
+     * imagenProductoExtension: Verifica si la imagen del producto tiene una extensión válida (webp). Devuelve true si la extensión es válida o null si no lo es.
+     */
+    this.productosForm &#x3D; this.formBuilder.group({
+      id_producto: [&#x27;&#x27;],
+      nombre_producto: [&#x27;&#x27;, Validators.required],
+      categoria_producto: [&#x27;&#x27;, Validators.required],
+      descripcion_producto: [&#x27;&#x27;, Validators.required],
+      precio_producto: [&#x27;&#x27;, Validators.required],
+      stock_producto: [&#x27;&#x27;, Validators.required],
+      imagen_producto: [&#x27;&#x27;, [Validators.required, imagenProductoExtension()]]
+    })
+
+    /*
+     * @description Formulario para ingresar un nuevo producto y sus respectivos validadores
+     * Validador personalizado:
+     * imagenProductoExtension: Verifica si la imagen del producto tiene una extensión válida (webp). Devuelve true si la extensión es válida o null si no lo es.
+     */
+    this.editProductosForm &#x3D; this.formBuilder.group({
+      id_producto: [&#x27;&#x27;],
+      nombre_producto: [&#x27;&#x27;, Validators.required],
+      categoria_producto: [&#x27;&#x27;, Validators.required],
+      descripcion_producto: [&#x27;&#x27;, Validators.required],
+      precio_producto: [&#x27;&#x27;, Validators.required],
+      stock_producto: [&#x27;&#x27;, Validators.required],
+      imagen_producto: [&#x27;&#x27;, [Validators.required, imagenProductoExtension()]]
+    });
+  }
+
+  ngOnInit() {
+
+    /*
+     * @description Inicializa la tabla de productos con DataTables y sus respectivas configuraciones
+     * Configuraciones:
+     * searching: Habilita la búsqueda en la tabla
+     * paging: Habilita la paginación en la tabla
+     * ordering: Habilita el ordenamiento de las columnas
+     * responsive: Habilita la respuesta de la tabla a diferentes tamaños de pantalla
+     * columns: Define las columnas de la tabla y sus títulos
+     * data: Define los datos que se mostrarán en la tabla, en este caso los productos vienen desde un archivo data.ts, pero también pueden venir desde el localStorage.
+     */
+    let table &#x3D; new DataTable(&#x27;#adminTable&#x27;, {
+      searching: true,
+      paging: true,
+      ordering: true,
+      responsive: true,
+      columns: [
+        {title: &#x27;ID&#x27;},
+        {title: &#x27;Nombre&#x27;},
+        {title: &#x27;Categoria&#x27;},
+        {title: &#x27;Descripcion&#x27;},
+        {title: &#x27;Precio&#x27;},
+        {title: &#x27;Stock&#x27;},
+        {title: &#x27;Acciones&#x27;},
+      ],
+      data:
+        this.productos.map((item: any) &#x3D;&gt; {
+          return[
+            item.id_producto,
+            item.nombre_producto,
+            item.categoria_producto &#x3D;&#x3D; &#x27;juegos-mesa&#x27; ? &#x27;Juegos de Mesa&#x27; : item.categoria_producto &#x3D;&#x3D; &#x27;juegos-cartas&#x27; ? &#x27;Juegos de Cartas&#x27; : &#x27;Juegos de Rol&#x27;,
+            item.descripcion_producto,
+            formatoCLP.format(item.precio_producto),
+            &#x60;&lt;span class&#x3D;&quot;badge border border-light ${item.stock_producto &gt;&#x3D; 10 ? &#x27;bg-success&#x27; : item.stock_producto &gt;&#x3D; 5 ? &#x27;bg-warning&#x27; : &#x27;bg-danger&#x27;}&quot;&gt;${item.stock_producto}&lt;/span&gt;&#x60;,
+            &#x60;&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;dashboardService.deleteProducto(${item.id_producto})&quot;&gt;&lt;i class&#x3D;&quot;bi bi-trash&quot;&gt;&lt;/i&gt;&lt;/button&gt;&#x60;
+          ]
+        })
+    });
+  }
+
+  /*
+   * @description Función que se ejecuta al enviar el formulario de registro de administrador.
+   * Verifica si el formulario tiene errores y si no los tiene, llama al servicio para agregar un nuevo administrador.
+   * Si el formulario no es válido, muestra un mensaje de advertencia.
+   *
+   */
+  onSubmit() {
+
+    if (this.adminForm.errors &#x3D;&#x3D; null) {
+
+      /*
+       * @description Llama al servicio para agregar un nuevo administrador con los valores del formulario.
+       */
+
+     let new_admin &#x3D; this.dashboardService.newAdmin(
+                                this.adminForm.value.adminNombre,
+                                this.adminForm.value.adminApellido,
+                                this.adminForm.value.adminEmail,
+                                this.adminForm.value.adminPassword
+                              );
+
+     if (new_admin) {
+       Swal.fire({
+         icon: &#x27;success&#x27;,
+         title: &#x27;Administrador agregado con éxito&#x27;,
+         text: &#x27;El nuevo administrador ha sido agregado exitosamente.&#x27;,
+         theme: &#x27;dark&#x27;
+       }).then(() &#x3D;&gt; {
+         location.reload();
+       })
+     }
+
+    }
+    else{
+      Swal.fire({
+        icon: &#x27;warning&#x27;,
+        title: &#x27;Oops...&#x27;,
+        text: &#x27;Por favor, complete todos los campos correctamente.&#x27;,
+        theme: &#x27;dark&#x27;,
+        timer: 3500,
+      }).then(() &#x3D;&gt; {
+        location.reload();
+      })
+    }
+  }
+
+  /*
+   * @description Función que se ejecuta al enviar el formulario de registro de producto.
+   * Verifica si el formulario tiene errores y si no los tiene, llama al servicio para agregar un nuevo producto.
+   * Si el formulario no es válido, muestra un mensaje de advertencia.
+   *
+   */
+  onSubmitProduct(){
+
+    if (this.productosForm.errors &#x3D;&#x3D; null) {
+
+      let new_producto &#x3D; this.dashboardService.newProducto(
+                                this.productosForm.value.id_producto,
+                                this.productosForm.value.nombre_producto,
+                                this.productosForm.value.categoria_producto,
+                                this.productosForm.value.descripcion_producto,
+                                this.productosForm.value.precio_producto,
+                                this.productosForm.value.stock_producto,
+                                this.productosForm.value.imagen_producto
+                              );
+
+      if (new_producto) {
+        Swal.fire({
+          icon: &#x27;success&#x27;,
+          title: &#x27;Producto agregado con éxito&#x27;,
+          text: &#x27;El nuevo producto ha sido agregado exitosamente.&#x27;,
+          theme: &#x27;dark&#x27;
+        }).then(() &#x3D;&gt; {
+          location.reload();
+        })
+      }
+
+    }
+    else {
+
+      Swal.fire({
+        icon: &#x27;warning&#x27;,
+        title: &#x27;Oops...&#x27;,
+        text: &#x27;Por favor, complete todos los campos correctamente.&#x27;,
+        theme: &#x27;dark&#x27;,
+        timer: 3500,
+      }).then(() &#x3D;&gt; {
+        location.reload();
+      })
+    }
+  }
+
+  /*
+   * @param id del producto.
+   *
+   * @description Función que se ejecuta al eliminar un producto.
+   * Llama al servicio para eliminar el producto y si lo elimina, muestra un mensaje de éxito.
+   */
+  deleteProducto(id: number) {
+
+    let deleted_product &#x3D; this.dashboardService.deleteProducto(id);
+
+    if (deleted_product) {
+
+      Swal.fire({
+        icon: &#x27;success&#x27;,
+        title: &#x27;Producto eliminado&#x27;,
+        text: &#x27;El producto ha sido eliminado exitosamente&#x27;,
+        theme: &#x27;dark&#x27;
+      }).then(() &#x3D;&gt; {
+        location.reload();
+      });
+    }
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;router-outlet&gt;
+  &lt;br&gt;
+
+  &lt;div class&#x3D;&quot;container-fluid p-0&quot;&gt;
+
+    &lt;div class&#x3D;&quot;container-fluid d-flex flex-column justify-content-center align-items-center&quot;&gt;
+
+      &lt;div class&#x3D;&quot;container-fluid row gap-3 d-flex justify-content-center align-items-center p-0&quot;&gt;
+
+        &lt;div class&#x3D;&quot;col-12 d-flex justify-content-center align-items-start flex-wrap&quot; id&#x3D;&quot;admin_product_forms&quot;&gt;
+
+          &lt;div class&#x3D;&quot;card col-md-6 col-sm-12&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header pt-3&quot; id&#x3D;&quot;header1&quot;&gt;
+              &lt;h5 class&#x3D;&quot;card-title mb-0&quot;&gt;Nuevo Administrador&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;form class&#x3D;&quot;row&quot; id&#x3D;&quot;admin_form&quot; [formGroup]&#x3D;&quot;adminForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+
+                &lt;div class&#x3D;&quot;col-md-12 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;admin_nombre&quot;&gt;Nombre&lt;/label&gt;
+                  &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Nombre&quot; name&#x3D;&quot;admin_nombre&quot; formControlName&#x3D;&quot;adminNombre&quot;&gt;
+
+                  @if (adminForm.get(&#x27;adminNombre&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; adminForm.get(&#x27;adminNombre&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-12 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;admin_apellido&quot;&gt;Apellido&lt;/label&gt;
+                  &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Apellido&quot; name&#x3D;&quot;admin_apellido&quot; formControlName&#x3D;&quot;adminApellido&quot;&gt;
+                  @if (adminForm.get(&#x27;adminApellido&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; adminForm.get(&#x27;adminApellido&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-12 mb-3&quot;&gt;
+                  &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                    &lt;span class&#x3D;&quot;input-group-text&quot;&gt;&lt;i class&#x3D;&quot;bi bi-envelope-at&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Email&quot; name&#x3D;&quot;admin_email&quot; formControlName&#x3D;&quot;adminEmail&quot;&gt;
+                  &lt;/div&gt;
+                  @if (adminForm.get(&#x27;adminEmail&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; adminForm.get(&#x27;adminEmail&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  } @else if (adminForm.get(&#x27;adminEmail&#x27;)?.hasError(&#x27;email&#x27;)) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Ingrese un correo electrónico válido&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                  &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;hidePassword &#x3D; !hidePassword&quot;&gt;
+                      &lt;i class&#x3D;&quot;bi&quot; [ngClass]&#x3D;&quot;hidePassword ? &#x27;bi-eye-fill&#x27; : &#x27;bi-eye-slash-fill&#x27;&quot;&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                    &lt;input [type]&#x3D;&quot;hidePassword ? &#x27;password&#x27; : &#x27;text&#x27;&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Contraseña&quot; name&#x3D;&quot;admin_password&quot; formControlName&#x3D;&quot;adminPassword&quot; required&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;form-text&quot;&gt;&lt;small id&#x3D;&quot;form-help&quot;&gt;La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&amp;#64;$!%*?&amp;)&lt;/small&gt;&lt;/div&gt;
+                  @if (adminForm.get(&#x27;adminPassword&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; adminForm.get(&#x27;adminPassword&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  } @else if (adminForm.get(&#x27;adminPassword&#x27;)?.hasError(&#x27;pattern&#x27;)) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&amp;#64;$!%*?&amp;)&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                  &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;hideConfirmPassword &#x3D; !hideConfirmPassword&quot;&gt;
+                      &lt;i class&#x3D;&quot;bi&quot; [ngClass]&#x3D;&quot;hideConfirmPassword ? &#x27;bi-eye-fill&#x27; : &#x27;bi-eye-slash-fill&#x27;&quot;&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                    &lt;input [type]&#x3D;&quot;hideConfirmPassword ? &#x27;password&#x27; : &#x27;text&#x27;&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Confirma tu contraseña&quot; name&#x3D;&quot;admin_confirm_password&quot; formControlName&#x3D;&quot;adminConfirmPassword&quot;&gt;
+                  &lt;/div&gt;
+
+                  @if (adminForm.hasError(&#x27;passwordMismatch&#x27;)) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Las contraseñas no coinciden&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;d-grid gap-3&quot;&gt;
+                  &lt;button class&#x3D;&quot;btn&quot; type&#x3D;&quot;submit&quot;&gt;&lt;i class&#x3D;&quot;bi bi-floppy&quot;&gt;&lt;/i&gt; Guardar&lt;/button&gt;
+                  &lt;button class&#x3D;&quot;btn btn-limpiar&quot; type&#x3D;&quot;reset&quot;&gt;&lt;i class&#x3D;&quot;bi bi-x-lg&quot;&gt;&lt;/i&gt; Limpiar&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/form&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;card col-md-6 col-sm-12&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header pt-3&quot; id&#x3D;&quot;header2&quot;&gt;
+              &lt;h5 class&#x3D;&quot;card-title mb-0&quot;&gt;Nuevo Producto&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;form class&#x3D;&quot;row&quot; id&#x3D;&quot;product_form&quot; [formGroup]&#x3D;&quot;productosForm&quot; (ngSubmit)&#x3D;&quot;onSubmitProduct()&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-2 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;inputId&quot; class&#x3D;&quot;form-label&quot;&gt;ID&lt;/label&gt;
+                  &lt;input formControlName&#x3D;&quot;id_producto&quot; type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;inputId&quot; placeholder&#x3D;&quot;ID&quot; value&#x3D;&quot;{{productoId}}&quot; readonly&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-5 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productName&quot; class&#x3D;&quot;form-label&quot;&gt;Nombre del Producto&lt;/label&gt;
+                  &lt;input formControlName&#x3D;&quot;nombre_producto&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;productName&quot; placeholder&#x3D;&quot;Nombre del Producto&quot; &gt;
+                  @if (productosForm.get(&#x27;nombre_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;nombre_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-5 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productCategory&quot; class&#x3D;&quot;form-label&quot;&gt;Categoría del Producto&lt;/label&gt;
+                  &lt;select formControlName&#x3D;&quot;categoria_producto&quot; class&#x3D;&quot;form-select&quot; name&#x3D;&quot;productCategory&quot;&gt;
+                    &lt;option value&#x3D;&quot;&quot;&gt;Categoría&lt;/option&gt;
+                    &lt;option value&#x3D;&quot;juegos-mesa&quot;&gt;Juegos de Mesa&lt;/option&gt;
+                    &lt;option value&#x3D;&quot;juegos-cartas&quot;&gt;Juegos de Cartas&lt;/option&gt;
+                    &lt;option value&#x3D;&quot;juegos-rol&quot;&gt;Juegos de Rol&lt;/option&gt;
+                  &lt;/select&gt;
+                  @if (productosForm.get(&#x27;categoria_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;categoria_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productPrice&quot; class&#x3D;&quot;form-label&quot;&gt;Precio&lt;/label&gt;
+                  &lt;input formControlName&#x3D;&quot;precio_producto&quot; type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;productPrice&quot; placeholder&#x3D;&quot;Precio&quot;&gt;
+                  @if (productosForm.get(&#x27;precio_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;precio_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productStock&quot; class&#x3D;&quot;form-label&quot;&gt;Stock&lt;/label&gt;
+                  &lt;input formControlName&#x3D;&quot;stock_producto&quot; type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;productStock&quot; placeholder&#x3D;&quot;Stock&quot;&gt;
+                  @if (productosForm.get(&#x27;stock_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;stock_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productImage&quot; class&#x3D;&quot;form-label&quot;&gt;URL de la Imagen&lt;/label&gt;
+                  &lt;input formControlName&#x3D;&quot;imagen_producto&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;productImage&quot; placeholder&#x3D;&quot;Imagen&quot;&gt;
+                  @if (productosForm.get(&#x27;imagen_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;imagen_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12 mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;productDescription&quot; class&#x3D;&quot;form-label&quot;&gt;Descripción del Producto&lt;/label&gt;
+                  &lt;textarea formControlName&#x3D;&quot;descripcion_producto&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;productDescription&quot; rows&#x3D;&quot;4&quot; placeholder&#x3D;&quot;Descripción&quot;&gt;&lt;/textarea&gt;
+                  @if (productosForm.get(&#x27;descripcion_producto&#x27;)?.hasError(&#x27;required&#x27;) &amp;&amp; productosForm.get(&#x27;descripcion_producto&#x27;)?.touched) {
+                    &lt;p&gt;
+                      &lt;small class&#x3D;&quot;text-danger&quot;&gt;**Este campo es obligatorio&lt;/small&gt;
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;d-grid gap-2&quot;&gt;
+                  &lt;button class&#x3D;&quot;btn&quot; type&#x3D;&quot;submit&quot;&gt;&lt;i class&#x3D;&quot;bi bi-floppy&quot;&gt;&lt;/i&gt; Guardar&lt;/button&gt;
+                  &lt;button type&#x3D;&quot;reset&quot; class&#x3D;&quot;btn btn-limpiar&quot;&gt;&lt;i class&#x3D;&quot;bi bi-x-lg&quot;&gt;&lt;/i&gt; Limpiar&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/form&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;col-12 container-fluid&quot;&gt;
+          &lt;div class&#x3D;&quot;col card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+              &lt;h5 class&#x3D;&quot;card-title mb-0&quot;&gt;Productos Disponibles&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;table id&#x3D;&quot;adminTable&quot; class&#x3D;&quot;table table-dark table-hover text-center&quot; style&#x3D;&quot;width: 100%&quot;&gt;&lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+  &lt;br&gt;
+&lt;/router-outlet&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./admin-dashboard.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+.form-text{
+  color: var(--cffy-theme-primary-a40);
+}
+
+#admins{
+  color: var(--cffy-theme-primary-a40);
+}
+
+#productos{
+  color: var(--cffy-theme-primary-a40);
+  border: 2px solid var(--cffy-theme-primary-a40);
+}
+
+.card{
+  color: var(--cffy-theme-primary-a40);
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  border: none;
+}
+
+.card-header{
+  color: var(--cffy-theme-primary-a40);
+  background-color: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid var(--cffy-theme-surface-a30);
+}
+
+.btn {
+  color: var(--cffy-theme-surface-a0);
+  background-color: var(--cffy-theme-primary-a40);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-limpiar{
+  background-color: var(--cffy-theme-surface-a0);
+  color: #fff;
+  border: var(--cffy-theme-surface-tonal-a40) solid 1px;
+}
+
+small{
+  color: var(--cffy-theme-danger-a0);
+}
+#form-help{
+  color: var(--cffy-theme-primary-a40);
+}
+
+span{
+  color: var(--cffy-theme-surface-a0);
+  background-color: var(--cffy-theme-primary-a40);
+  border: none;
+}
+
+.modal-content{
+  color: var(--cffy-theme-primary-a40);
+  background-color: var(--cffy-theme-surface-a10);
+  border: 1px solid var(--cffy-theme-primary-a40);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+
+  admin_product_forms {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+  }
+
+  label{
+    display: none;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><router-outlet>  <br>  <div class="container-fluid p-0">    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">      <div class="container-fluid row gap-3 d-flex justify-content-center align-items-center p-0">        <div class="col-12 d-flex justify-content-center align-items-start flex-wrap" id="admin_product_forms">          <div class="card col-md-6 col-sm-12">            <div class="card-header pt-3" id="header1">              <h5 class="card-title mb-0">Nuevo Administrador</h5>            </div>            <div class="card-body">              <form class="row" id="admin_form" [formGroup]="adminForm" (ngSubmit)="onSubmit()">                <div class="col-md-12 mb-3">                  <label for="admin_nombre">Nombre</label>                  <input type="text" class="form-control" placeholder="Nombre" name="admin_nombre" formControlName="adminNombre">                  @if (adminForm.get(\'adminNombre\')?.hasError(\'required\') && adminForm.get(\'adminNombre\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-12 mb-3">                  <label for="admin_apellido">Apellido</label>                  <input type="text" class="form-control" placeholder="Apellido" name="admin_apellido" formControlName="adminApellido">                  @if (adminForm.get(\'adminApellido\')?.hasError(\'required\') && adminForm.get(\'adminApellido\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-12 mb-3">                  <div class="input-group">                    <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>                    <input type="email" class="form-control" placeholder="Email" name="admin_email" formControlName="adminEmail">                  </div>                  @if (adminForm.get(\'adminEmail\')?.hasError(\'required\') && adminForm.get(\'adminEmail\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  } @else if (adminForm.get(\'adminEmail\')?.hasError(\'email\')) {                    <p>                      <small class="text-danger">**Ingrese un correo electrónico válido</small>                    </p>                  }                </div>                <div class="col-md-6 mb-3">                  <div class="input-group">                    <button type="button" class="btn btn-secondary" (click)="hidePassword = !hidePassword">                      <i class="bi" [ngClass]="hidePassword ? \'bi-eye-fill\' : \'bi-eye-slash-fill\'"></i>                    </button>                    <input [type]="hidePassword ? \'password\' : \'text\'" class="form-control" placeholder="Contraseña" name="admin_password" formControlName="adminPassword" required>                  </div>                  <div class="form-text"><small id="form-help">La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&#64;$!%*?&)</small></div>                  @if (adminForm.get(\'adminPassword\')?.hasError(\'required\') && adminForm.get(\'adminPassword\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  } @else if (adminForm.get(\'adminPassword\')?.hasError(\'pattern\')) {                    <p>                      <small class="text-danger">**La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, dígitos y caracteres especiales (&#64;$!%*?&)</small>                    </p>                  }                </div>                <div class="col-md-6 mb-3">                  <div class="input-group">                    <button type="button" class="btn btn-secondary" (click)="hideConfirmPassword = !hideConfirmPassword">                      <i class="bi" [ngClass]="hideConfirmPassword ? \'bi-eye-fill\' : \'bi-eye-slash-fill\'"></i>                    </button>                    <input [type]="hideConfirmPassword ? \'password\' : \'text\'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">                  </div>                  @if (adminForm.hasError(\'passwordMismatch\')) {                    <p>                      <small class="text-danger">**Las contraseñas no coinciden</small>                    </p>                  }                </div>                <div class="d-grid gap-3">                  <button class="btn" type="submit"><i class="bi bi-floppy"></i> Guardar</button>                  <button class="btn btn-limpiar" type="reset"><i class="bi bi-x-lg"></i> Limpiar</button>                </div>              </form>            </div>          </div>          <div class="card col-md-6 col-sm-12">            <div class="card-header pt-3" id="header2">              <h5 class="card-title mb-0">Nuevo Producto</h5>            </div>            <div class="card-body">              <form class="row" id="product_form" [formGroup]="productosForm" (ngSubmit)="onSubmitProduct()">                <div class="col-md-2 mb-3">                  <label for="inputId" class="form-label">ID</label>                  <input formControlName="id_producto" type="number" class="form-control" name="inputId" placeholder="ID" value="{{productoId}}" readonly>                </div>                <div class="col-md-5 mb-3">                  <label for="productName" class="form-label">Nombre del Producto</label>                  <input formControlName="nombre_producto" type="text" class="form-control" name="productName" placeholder="Nombre del Producto" >                  @if (productosForm.get(\'nombre_producto\')?.hasError(\'required\') && productosForm.get(\'nombre_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-5 mb-3">                  <label for="productCategory" class="form-label">Categoría del Producto</label>                  <select formControlName="categoria_producto" class="form-select" name="productCategory">                    <option value="">Categoría</option>                    <option value="juegos-mesa">Juegos de Mesa</option>                    <option value="juegos-cartas">Juegos de Cartas</option>                    <option value="juegos-rol">Juegos de Rol</option>                  </select>                  @if (productosForm.get(\'categoria_producto\')?.hasError(\'required\') && productosForm.get(\'categoria_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-4 mb-3">                  <label for="productPrice" class="form-label">Precio</label>                  <input formControlName="precio_producto" type="number" class="form-control" name="productPrice" placeholder="Precio">                  @if (productosForm.get(\'precio_producto\')?.hasError(\'required\') && productosForm.get(\'precio_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-4 mb-3">                  <label for="productStock" class="form-label">Stock</label>                  <input formControlName="stock_producto" type="number" class="form-control" name="productStock" placeholder="Stock">                  @if (productosForm.get(\'stock_producto\')?.hasError(\'required\') && productosForm.get(\'stock_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-4 mb-3">                  <label for="productImage" class="form-label">URL de la Imagen</label>                  <input formControlName="imagen_producto" type="text" class="form-control" name="productImage" placeholder="Imagen">                  @if (productosForm.get(\'imagen_producto\')?.hasError(\'required\') && productosForm.get(\'imagen_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="col-md-12 mb-3">                  <label for="productDescription" class="form-label">Descripción del Producto</label>                  <textarea formControlName="descripcion_producto" class="form-control" name="productDescription" rows="4" placeholder="Descripción"></textarea>                  @if (productosForm.get(\'descripcion_producto\')?.hasError(\'required\') && productosForm.get(\'descripcion_producto\')?.touched) {                    <p>                      <small class="text-danger">**Este campo es obligatorio</small>                    </p>                  }                </div>                <div class="d-grid gap-2">                  <button class="btn" type="submit"><i class="bi bi-floppy"></i> Guardar</button>                  <button type="reset" class="btn btn-limpiar"><i class="bi bi-x-lg"></i> Limpiar</button>                </div>              </form>            </div>          </div>        </div>        <div class="col-12 container-fluid">          <div class="col card">            <div class="card-header">              <h5 class="card-title mb-0">Productos Disponibles</h5>            </div>            <div class="card-body">              <table id="adminTable" class="table table-dark table-hover text-center" style="width: 100%"></table>            </div>          </div>        </div>      </div>    </div>  </div>  <br></router-outlet></div>'
+    var COMPONENTS = [{'name': 'AdminDashboard', 'selector': 'app-admin-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'Categorias', 'selector': 'app-categorias'},{'name': 'EditProfile', 'selector': 'app-edit-profile'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Home', 'selector': 'app-home'},{'name': 'NotFound', 'selector': 'app-not-found'},{'name': 'Privacy', 'selector': 'app-privacy'},{'name': 'Producto', 'selector': 'app-producto'},{'name': 'ShoppingCart', 'selector': 'app-shopping-cart'},{'name': 'SignIn', 'selector': 'app-sign-in'},{'name': 'SignUp', 'selector': 'app-sign-up'},{'name': 'TermnsConditions', 'selector': 'app-termns-conditions'},{'name': 'UserProfile', 'selector': 'app-user-profile'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AdminDashboard'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AdminDashboard.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

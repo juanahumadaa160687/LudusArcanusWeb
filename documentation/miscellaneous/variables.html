@@ -1,0 +1,729 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ludus-arcanus-web documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ludus-arcanus-web documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#formatoCLP" title="src/app/functions/currencyFormat.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>formatoCLP</b>&nbsp;&nbsp;&nbsp;(src/.../currencyFormat.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#pedidos" title="public/data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>pedidos</b>&nbsp;&nbsp;&nbsp;(public/.../data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#productos" title="public/data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>productos</b>&nbsp;&nbsp;&nbsp;(public/.../data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#users" title="public/data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>users</b>&nbsp;&nbsp;&nbsp;(public/.../data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#users" title="src/app/functions/validators.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>users</b>&nbsp;&nbsp;&nbsp;(src/.../validators.ts)</span></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ApplicationConfig</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    {provide: LOCALE_ID, useValue: &#x27;es-CL&#x27;},
+    {provide: DEFAULT_CURRENCY_CODE, useValue: &#x27;CLP&#x27;},
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/functions/currencyFormat.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatoCLP"></a>
+                    <span class="name">
+                        <span ><b>formatoCLP</b></span>
+                        <a href="#formatoCLP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Intl.NumberFormat(&#x27;es-CL&#x27;, {
+  style: &#x27;currency&#x27;,
+  currency: &#x27;CLP&#x27;,
+  minimumFractionDigits: 0,
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>public/data.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pedidos"></a>
+                    <span class="name">
+                        <span ><b>pedidos</b></span>
+                        <a href="#pedidos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{id: 1, fecha: &#x27;2024-06-01&#x27;, precio: 100.00, estado: &#x27;Enviado&#x27;},
+    {id: 2, fecha: &#x27;2024-06-02&#x27;, precio: 50.00, estado: &#x27;Pendiente&#x27;},
+    {id: 3, fecha: &#x27;2024-06-03&#x27;, precio: 70.00, estado: &#x27;Enviado&#x27;},
+    {id: 4, fecha: &#x27;2024-06-04&#x27;, precio: 70.00, estado: &#x27;Enviado&#x27;},
+    {id: 5, fecha: &#x27;2024-06-05&#x27;, precio: 70.00, estado: &#x27;Enviado&#x27;}]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productos"></a>
+                    <span class="name">
+                        <span ><b>productos</b></span>
+                        <a href="#productos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    id_producto: 1,
+    nombre_producto: &#x27;Magic Edge Eternities&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 6990,
+    stock_producto: 10,
+    imagen_producto: &#x27;magic-eternidad.webp&#x27;,
+    descripcion_producto: &#x27;Adéntrate en los rincones más lejanos del multiverso con los Play Boosters de Edge of Eternities, la opción ideal para armar tu mazo, descubrir nuevas sinergias o vivir una intensa sesión de draft con amigos.&#x27;,
+  },
+  {
+    id_producto: 2,
+    nombre_producto: &#x27;Magic The Hobbit&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 548990,
+    stock_producto: 5,
+    imagen_producto: &#x27;magic-hobbit.webp&#x27;,
+    descripcion_producto: &#x27;¡Regresa a la Tierra Media y sé testigo del comienzo de una de las historias más legendarias jamás contadas! Acompaña a Bilbo Bolsón, Gandalf y la compañía de enanos en su viaje desde la Comarca hasta la Montaña Solitaria, enfrentando peligros, descubriendo tesoros y desafiando al temible dragón Smaug.&#x27;
+  },
+  {
+    id_producto: 3,
+    nombre_producto: &#x27;Magic Marvel\&#x27;s Spider-Man&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 8990,
+    stock_producto: 8,
+    imagen_producto: &#x27;magic-spiderman.webp&#x27;,
+    descripcion_producto: &#x27;Tu amigo y vecino Spiderman llega balanceándose a Magic: The Gathering ¡y lo hace justo a tiempo! Reúne a lanzarredes de todo el Universo Spiderman y únete a ellos para acabar con los enemigos siniestros que amenazan la ciudad.&#x27;
+  },
+  {
+    id_producto: 4,
+    nombre_producto: &#x27;Pokemon Mega Evolution Chaos Rising&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 7490,
+    stock_producto: 12,
+    imagen_producto: &#x27;pokemon-chaos.webp&#x27;,
+    descripcion_producto: &#x27;Explora el mundo de Pokémon con el set Mega Evolution Chaos Rising. Mejora tus estrategias y descubre nuevas combinaciones para dominar tus batallas Pokémon.&#x27;
+  },
+  {
+    id_producto: 5,
+    nombre_producto: &#x27;Pokémon Perfect Order&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 6990,
+    stock_producto: 10,
+    imagen_producto: &#x27;pokemon-perfect.webp&#x27;,
+    descripcion_producto: &#x27;Descubre el set Pokémon TCG – Perfect Order y lleva tus habilidades de juego al siguiente nivel. Con nuevas cartas y estrategias, este set es perfecto para entrenadores que buscan dominar el campo de batalla.&#x27;
+  },
+  {
+    id_producto: 6,
+    nombre_producto: &#x27;Pokemon First Partner Illustration Collection&#x27;,
+    categoria_producto: &#x27;juegos-cartas&#x27;,
+    precio_producto: 7990,
+    stock_producto: 7,
+    imagen_producto: &#x27;pokemon-series1.webp&#x27;,
+    descripcion_producto: &#x27;Explora la colección de ilustraciones de los primeros compañeros de Pokémon. Cada carta presenta arte detallado y estrategias únicas para mejorar tu experiencia de juego.&#x27;
+  },
+  {
+    id_producto: 7,
+    nombre_producto: &#x27;7 Wonders Duel&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 4990,
+    stock_producto: 6,
+    imagen_producto: &#x27;7wonders.webp&#x27;,
+    descripcion_producto: &#x27;7 Wonders Duel es un juego de mesa estratégico para dos jugadores. Construye tu civilización, desarrolla tus recursos y compite por la supremacía en este emocionante juego de cartas.&#x27;
+  },
+  {
+    id_producto: 8,
+    nombre_producto: &#x27;Adivina Quién&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 7990,
+    stock_producto: 8,
+    imagen_producto: &#x27;adivina-quien.webp&#x27;,
+    descripcion_producto: &#x27;Adivina Quién es un juego de mesa clásico donde los jugadores deben adivinar la identidad del personaje del oponente haciendo preguntas estratégicas. ¡Diviértete y desafía a tus amigos!&#x27;
+  },
+  {
+    id_producto: 9,
+    nombre_producto: &#x27;Catan Base&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 4990,
+    stock_producto: 10,
+    imagen_producto: &#x27;catan.webp&#x27;,
+    descripcion_producto: &#x27;Catan Base es un juego de mesa estratégico donde los jugadores deben colonizar una isla, construir asentamientos y comerciar recursos para ganar puntos de victoria.&#x27;
+  },
+  {
+    id_producto: 10,
+    nombre_producto: &#x27;Ticket to Ride&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 5990,
+    stock_producto: 7,
+    imagen_producto: &#x27;ticket-ride.webp&#x27;,
+    descripcion_producto: &#x27;Ticket to Ride es un juego de mesa donde los jugadores compiten para construir rutas de tren a través de América del Norte. Estrategia y planificación son clave para ganar.&#x27;
+  },
+  {
+    id_producto: 11,
+    nombre_producto: &#x27;Monopoly Harry Potter&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 6990,
+    stock_producto: 5,
+    imagen_producto: &#x27;monopoly-potter.webp&#x27;,
+    descripcion_producto: &#x27;Monopoly Harry Potter es una versión temática del clásico juego de mesa. Compra propiedades, construye casas y hoteles, y compite para convertirte en el mago más rico del mundo mágico.&#x27;
+  },
+  {
+    id_producto: 12,
+    nombre_producto: &#x27;Risk&#x27;,
+    categoria_producto: &#x27;juegos-mesa&#x27;,
+    precio_producto: 7990,
+    stock_producto: 7,
+    imagen_producto: &#x27;risk.webp&#x27;,
+    descripcion_producto: &#x27;Risk es un juego de mesa de estrategia donde los jugadores compiten por la dominación mundial. Conquista territorios, forma alianzas y despliega tus ejércitos para ganar.&#x27;
+  },
+  {
+    id_producto: 13,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Journeys through the Radiant Citadel&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 8990,
+    stock_producto: 4,
+    imagen_producto: &#x27;d&amp;d-citadel.webp&#x27;,
+    descripcion_producto: &#x27;Dungeons &amp; Dragons Journeys through the Radiant Citadel es un juego de mesa de rol donde los jugadores asumen el papel de héroes en un mundo de fantasía. Explora mazmorras, combate monstruos y completa misiones épicas.&#x27;
+  },
+  {
+    id_producto: 14,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Dragonlance&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 9990,
+    stock_producto: 3,
+    imagen_producto: &#x27;d&amp;d-dragonlance.webp&#x27;,
+    descripcion_producto: &#x27;Dungeons &amp; Dragons Dragonlance es un juego de mesa ambientado en el mundo de Krynn. Los jugadores pueden explorar la historia de Dragonlance, enfrentarse a dragones y vivir aventuras épicas.&#x27;
+  },
+  {
+    id_producto: 15,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Fizban\&#x27;s Treasury of Dragons&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 9990,
+    stock_producto: 3,
+    imagen_producto: &#x27;d&amp;d-fizbans.webp&#x27;,
+    descripcion_producto: &#x27;Dungeons &amp; Dragons Fizban\&#x27;s Treasury of Dragons es un juego de mesa ambientado en el mundo de Krynn. Los jugadores pueden explorar la historia de Fizban, enfrentarse a dragones y vivir aventuras épicas.&#x27;
+  },
+  {
+    id_producto: 16,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Manual de Monstruos&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 9990,
+    stock_producto: 4,
+    imagen_producto: &#x27;d&amp;d-manual-monstruos.webp&#x27;,
+    descripcion_producto: &#x27;El manual presenta una horda de criaturas clásicas de Dungeons and Dragons, incluyendo dragones, gigantes, flayers mentales y beholders, una fiesta monstruosa para Dungeon Masters dispuestos a desafiar a sus jugadores y poblar sus aventuras.&#x27;,
+  },
+  {
+    id_producto: 17,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Fizban\&#x27;s Treasury of Dragons&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 9990,
+    stock_producto: 3,
+    imagen_producto: &#x27;d&amp;d-fizbans.webp&#x27;,
+    descripcion_producto: &#x27;Dungeons &amp; Dragons Fizban\&#x27;s Treasury of Dragons es un juego de mesa ambientado en el mundo de Krynn. Los jugadores pueden explorar la historia de Fizban, enfrentarse a dragones y vivir aventuras épicas.&#x27;
+  },
+  {
+    id_producto: 17,
+    nombre_producto: &#x27;Dungeons &amp; Dragons Manual de Monstruos&#x27;,
+    categoria_producto: &#x27;juegos-rol&#x27;,
+    precio_producto: 9990,
+    stock_producto: 4,
+    imagen_producto: &#x27;d&amp;d-manual-monstruos.webp&#x27;,
+    descripcion_producto: &#x27;El manual presenta una horda de criaturas clásicas de Dungeons and Dragons, incluyendo dragones, gigantes, flayers mentales y beholders, una fiesta monstruosa para Dungeon Masters dispuestos a desafiar a sus jugadores y poblar sus aventuras.&#x27;,
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="users"></a>
+                    <span class="name">
+                        <span ><b>users</b></span>
+                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    nombre: &#x27;Jane&#x27;,
+    apellido: &#x27;Doe&#x27;,
+    email: &#x27;jdoe@mail.com&#x27;,
+    fecha_nacimiento: &#x27;1990-01-01&#x27;,
+    direccion: &#x27;123 Main St&#x27;,
+    username: &#x27;jdoe&#x27;,
+    password: &#x27;Abc123$$&#x27;,
+    role: &#x27;usuario&#x27;,
+  },
+  {
+    nombre: &#x27;John&#x27;,
+    apellido: &#x27;Smith&#x27;,
+    email: &#x27;jsmith@mail.com&#x27;,
+    fecha_nacimiento: &#x27;1990-01-01&#x27;,
+    direccion: &#x27;123 Main St&#x27;,
+    username: &#x27;jdoe&#x27;,
+    password: &#x27;Abc123$$&#x27;,
+    role: &#x27;administrador&#x27;,
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+
+  {
+    path: &#x27;home&#x27;,
+    component: Home,
+    title: &#x27;Ludus Arcanus&#x27;,
+  },
+  {
+    path: &#x27;&#x27;,
+    redirectTo: &#x27;home&#x27;,
+    pathMatch: &#x27;full&#x27;,
+  },
+  {
+    path: &#x27;categoria/:categoria&#x27;,
+    component: Categorias,
+    title: &#x27;Categorías&#x27;,
+  },
+  {
+    path: &#x27;producto/:id&#x27;,
+    component: Producto,
+    title: &#x27;Productos&#x27;
+  },
+  {
+    path: &#x27;sign-in&#x27;,
+    component: SignIn,
+    title: &#x27;Iniciar Sesión&#x27;,
+  },
+  {
+    path: &#x27;sign-up&#x27;,
+    component: SignUp,
+    title: &#x27;Registrarse&#x27;
+  },
+  {
+    path: &#x27;shopping-cart&#x27;,
+    component: ShoppingCart,
+    title: &#x27;Carrito de Compras&#x27;,
+  },
+  {
+    path: &#x27;privacidad&#x27;,
+    component: Privacy,
+    title: &#x27;Política de Privacidad&#x27;
+  },
+  {
+    path: &#x27;terminos-condiciones&#x27;,
+    component: TermnsConditions,
+    title: &#x27;Términos y Condiciones&#x27;
+  },
+  {
+    path: &#x27;administradores&#x27;,
+    component: AdminDashboard,
+    title: &#x27;Administradores&#x27;,
+    canActivate: [adminGuard]
+  },
+  {
+    path: &#x27;profile/:email&#x27;,
+    component: UserProfile,
+    title: &#x27;Perfil de Usuario&#x27;,
+    canActivate: [authGuard]
+  },
+  {
+    path: &#x27;edit-profile/:email&#x27;,
+    component: EditProfile,
+    title: &#x27;Editar Perfil&#x27;,
+    canActivate: [authGuard]
+  },
+  {
+    path: &#x27;reset-password/:email&#x27;,
+    component: ForgotPassword,
+    title: &#x27;Restablecer Contraseña&#x27;,
+    canActivate: [authGuard]
+  },
+  {
+    path: &#x27;**&#x27;,
+    component: NotFound
+  }
+
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/functions/validators.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="users"></a>
+                    <span class="name">
+                        <span ><b>users</b></span>
+                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>JSON.parse(localStorage.getItem(&#x27;users&#x27;) || &#x27;[]&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
