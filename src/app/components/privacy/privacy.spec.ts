@@ -1,22 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Privacy } from './privacy';
 
 describe('Privacy', () => {
   let component: Privacy;
   let fixture: ComponentFixture<Privacy>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
-      imports: [Privacy],
+      imports: [ Privacy ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(Privacy);
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
-  it('should create', () => {
+  /*
+   * @description Test para verificar que el componente se crea correctamente
+   */
+  it('should create component instance', () => {
     expect(component).toBeTruthy();
-  });
+  })
+
 });

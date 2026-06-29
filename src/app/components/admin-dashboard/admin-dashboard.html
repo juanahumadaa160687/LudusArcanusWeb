@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="input-group">
-                    <button type="button" class="btn btn-secondary" (click)="showPassword()">
+                    <button type="button" class="btn btn-secondary" (click)="signUpService.showPassword('password', hidePassword)">
                       <i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                     </button>
                     <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Contraseña" name="admin_password" formControlName="adminPassword" required>
@@ -72,10 +72,10 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="input-group">
-                    <button type="button" class="btn btn-secondary" (click)="showConfirmPassword()">
-                      <i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+                    <button type="button" class="btn btn-secondary" (click)="signUpService.showPassword('confirmPassword', hidePassword)">
+                      <i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                     </button>
-                    <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">
+                    <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">
                   </div>
 
                   @if (adminForm.get('adminConfirmPassword')?.hasError('required') && adminForm.get('adminConfirmPassword')?.touched) {
@@ -104,12 +104,7 @@
               <form class="row" id="product_form" [formGroup]="productosForm" (ngSubmit)="onSubmitProduct()">
                 <div class="col-md-2 mb-3">
                   <label for="inputId" class="form-label">ID</label>
-                  <input formControlName="id_producto" type="number" class="form-control" name="inputId" placeholder="ID" >
-                  @if (productosForm.get('id_producto')?.hasError('required') && productosForm.get('id_producto')?.touched) {
-                    <p>
-                      <small class="text-danger">**Este campo es obligatorio</small>
-                    </p>
-                  }
+                  <input formControlName="id_producto" type="number" class="form-control" name="inputId" placeholder="ID" value="{{productoId}}" readonly>
                 </div>
                 <div class="col-md-5 mb-3">
                   <label for="productName" class="form-label">Nombre del Producto</label>
@@ -182,7 +177,7 @@
         <div class="col-12 container-fluid">
           <div class="col card">
             <div class="card-header">
-              <h5 class="card-title mb-0">Productos Registrados</h5>
+              <h5 class="card-title mb-0">Productos Disponibles</h5>
             </div>
             <div class="card-body">
               <table id="adminTable" class="table table-dark table-hover text-center" style="width: 100%"></table>

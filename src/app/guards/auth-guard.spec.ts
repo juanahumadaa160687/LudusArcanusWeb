@@ -1,17 +1,48 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
-
+import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
+import {SignInService} from '../services/auth/sign-in';
 import { authGuard } from './auth-guard';
 
 describe('authGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) =>
-    TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+
+  let mockAuthService: { isLoggedIn: ReturnType<typeof vi.fn> };
+  let mockRouter: { parseUrl: ReturnType<typeof vi.fn> };
+
+  const dummyRoute = {} as ActivatedRouteSnapshot;
+  const dummyState = {} as RouterStateSnapshot;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    mockAuthService = { isLoggedIn: vi.fn() };
+    mockRouter = { parseUrl: vi.fn() };
+
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: SignInService, useValue: mockAuthService },
+        { provide: Router, useValue: mockRouter }
+      ]
+    });
+  })
+
+  /*
+   * @description Verifica si el guardia authGuard se haya creado correctamente.
+   */
+  it('should be created', () => {
+    expect(mockAuthService).toBeTruthy();
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  /*
+   * @description Verifica si el guardia authGuard permite el acceso a usuarios autenticados con rol de usuario
+   */
+  it('should allow access for authenticated users', () => {
+
+    mockAuthService.isLoggedIn.mockReturnValue(true);
+
+    const result = TestBed.runInInjectionContext(() =>
+      authGuard(dummyRoute, dummyState)
+    );
+
+    expect(result).toBe(true);
+
   });
+
 });

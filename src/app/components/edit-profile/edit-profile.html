@@ -41,7 +41,7 @@
               <p>
                 <small class="text-danger">**El correo electrónico es obligatorio</small>
               </p>
-            } @else if (editUserForm.get('email')?.hasError('email')) {
+            } @else if (editUserForm.get('email')?.hasError('email') && editUserForm.get('email')?.touched) {
               <p>
                 <small class="text-danger">**Ingresa un correo electrónico válido</small>
               </p>

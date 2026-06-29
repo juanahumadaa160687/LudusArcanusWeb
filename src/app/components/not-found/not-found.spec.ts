@@ -8,15 +8,19 @@ describe('NotFound', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotFound],
+      imports: [NotFound]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotFound);
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
-  it('should create', () => {
+  /*
+   * @description
+   * Test case to check if the NotFound component is created successfully.
+   */
+  it('should create component instance', () => {
     expect(component).toBeTruthy();
   });
+
 });

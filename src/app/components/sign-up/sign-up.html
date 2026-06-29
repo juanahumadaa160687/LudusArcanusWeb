@@ -60,11 +60,11 @@
                   <p>
                     <small class="text-danger">**Este campo es obligatorio.</small>
                   </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('min')) {
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('edadMinima')) {
                   <p>
                     <small class="text-danger">**Debes tener al menos 13 años para registrarte.</small>
                   </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('futureDate')) {
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('fechaFuturo')) {
                   <p>
                     <small class="text-danger">**La fecha de nacimiento no puede ser en el futuro.</small>
                   </p>
@@ -103,15 +103,15 @@
                   <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
                 </div>
 
-                @if (signUpForm.get('confirmPassword')?.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched) {
+                @if (signUpForm.get('confirmPassword')?.hasError('passwordNotMatch') && signUpForm.get('confirmPassword')?.touched) {
                   <p>
                     <small class="text-danger">*Las contraseñas no coinciden.</small>
                   </p>
                 }
               </div>
               <br>
-              <div class="d-grid gap-3" id="buttons">
-                <button type="submit" class="btn">Guardar</button>
+              <div class="d-grid gap-3 d-lg-flex justify-content-lg-center align-items-lg-center flex-lg-column" id="buttons">
+                <button type="submit" class="btn btn-submit">Guardar</button>
                 <button type="reset" class="btn btn-limpiar">Limpiar</button>
               </div>
 

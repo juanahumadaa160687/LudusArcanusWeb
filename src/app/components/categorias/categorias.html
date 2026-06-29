@@ -5,14 +5,14 @@
 
     <div class="container-fluid d-md-flex justify-content-end align-items-center d-none" id="categoria_buttons">
       <div class="btn-group" role="group">
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Mesa', 'btn-outline-primary': categoria !== 'Juegos de Mesa'}" routerLink="/categoria/juegos-mesa">Juegos de Mesa</button>
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Cartas', 'btn-outline-primary': categoria !== 'Juegos de Cartas'}" routerLink="/categoria/juegos-cartas">Juegos de Cartas</button>
-        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria === 'Juegos de Rol', 'btn-outline-primary': categoria !== 'Juegos de Rol'}" routerLink="/categoria/juegos-rol">Juegos de Rol</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria_title === 'Juegos de Mesa', 'btn-outline-primary': categoria_title !== 'Juegos de Mesa'}" routerLink="/categoria/juegos-mesa">Juegos de Mesa</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria_title === 'Juegos de Cartas', 'btn-outline-primary': categoria_title !== 'Juegos de Cartas'}" routerLink="/categoria/juegos-cartas">Juegos de Cartas</button>
+        <button type="button" class="btn" [ngClass]="{'btn-primary': categoria_title === 'Juegos de Rol', 'btn-outline-primary': categoria_title !== 'Juegos de Rol'}" routerLink="/categoria/juegos-rol">Juegos de Rol</button>
       </div>
     </div>
 
     <div class="container p-1 mb-3 d-flex justify-content-start align-items-center" id="titulo_categoria">
-      <h2 class="mb-0">{{categoria}}</h2>
+      <h2 class="mb-0">{{categoria_title}}</h2>
     </div>
     <div class="container mb-5 d-flex justify-content-center align-items-start" style="color: var(--cffy-theme-primary-a40);" id="desc-categoria">
       <p>Descubre nuestra amplia selección de juegos, desde clásicos hasta los más innovadores. Perfectos para todas las edades y ocasiones, nuestros juegos ofrecen diversión garantizada para amigos y familiares. ¡Explora nuestra colección y encuentra el juego perfecto para tu próxima reunión!</p>
@@ -20,15 +20,31 @@
 
     <div class="row container-fluid d-flex justify-content-center align-items-center" id="categoria_content">
 
+      <div class="col-12 container-fluid container-md d-flex justify-content-start align-items-center gap-4 p-3" id="juegos">
 
-        @if (categoria == 'Juegos de Mesa') {
-          <app-juegos-mesa></app-juegos-mesa>
-        } @else if (categoria == 'Juegos de Cartas') {
-          <app-juegos-cartas></app-juegos-cartas>
-        } @else if (categoria == 'Juegos de Rol') {
-          <app-juegos-rol></app-juegos-rol>
+        @for (juego of productos; track juego.id_producto) {
+
+          <div class="card p-0 d-flex flex-column justify-content-center align-items-center" style="min-width: 14rem; min-height: 20rem; background-image: url('/{{juego.categoria_producto}}/{{juego.imagen_producto}}'); background-size: cover; background-position: center;">
+            <div class="card-body d-flex flex-column justify-content-end align-items-start">
+
+              <div class="container-fluid d-flex justify-content-end align-items-start flex-column" id="datos-producto">
+                <h5 class="card-title mt-2 mb-0"><small>{{juego.nombre_producto}}</small></h5>
+                <p class="card-text mb-2"><small><strong>Precio:</strong> {{formatoCLP.format(juego.precio_producto)}}</small></p>
+                <div class="d-flex gap-2">
+                  <a class="btn btn_ver" role="button" routerLink="/producto/{{juego.id_producto}}">Ver Detalles</a>
+                  <button class="buy" [ngClass]="{'hidden': juego.stock_producto === 0 || !signInService.isLoggedIn()}" (click)="addToCart(juego.id_producto)"><i class="bi bi-cart4"></i> </button>
+                </div>
+              </div>
+            </div>
+          </div>
         }
-
+        @empty {
+          <div class="container-fluid d-flex justify-content-center align-items-center flex-column" style="min-height: 60vh;">
+            <h2 class="mb-0">No hay productos disponibles en esta categoría.</h2>
+            <p>Por favor, revisa más tarde o explora otras categorías.</p>
+          </div>
+        }
+      </div>
 
     </div>
   </div>

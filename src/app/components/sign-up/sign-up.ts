@@ -3,6 +3,13 @@ import {Router, RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {SignUpService} from '../../services/sign-up/sign-up-service';
+import {
+  emailExistsValidator,
+  fechaFuturoValidator,
+  edadMinValidator,
+  passwordNotMatchValidator
+} from '../../functions/validators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,8 +25,10 @@ import {SignUpService} from '../../services/sign-up/sign-up-service';
 })
 export class SignUp {
 
+  // Formulario de registro
   signUpForm!: FormGroup;
 
+  // Variables para mostrar/ocultar contraseña y confirmación de contraseña
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
 
@@ -27,35 +36,71 @@ export class SignUp {
   constructor(private formBuilder: FormBuilder, private router: Router, private signUpService: SignUpService) {}
 
   ngOnInit(){
+
+    /*
+     * @description Validación del formulario de registro, incluyendo validaciones personalizadas para el correo electrónico, fecha de nacimiento y contraseñas.
+     */
     this.signUpForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      email: ['', Validators.required, Validators.email, this.signUpService.checkEmailExistsValidator],
-      fecha_nacimiento: ['', Validators.required, Validators.min(13)],
+      email: ['', [Validators.required, Validators.email, emailExistsValidator()]],
+      fecha_nacimiento: ['', [Validators.required, fechaFuturoValidator(), edadMinValidator()]],
       direccion: [''],
-      password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,18}$')],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,18}$')]],
       confirmPassword: ['', Validators.required]
-    });
+    }, { validators: passwordNotMatchValidator() });
   }
 
+  /*
+   * @description Maneja el envío del formulario de registro.
+   * Verifica si el formulario es válido y llama al servicio de registro.
+   * Muestra mensajes de éxito o error según corresponda.
+   */
   onSubmit() {
 
-    if (this.signUpForm.valid) {
+    if (this.signUpForm.errors == null) {
 
-      let user = {
-        nombre: this.signUpForm.value.nombre,
-        apellido: this.signUpForm.value.apellido,
-        email: this.signUpForm.value.email,
-        fecha_nacimiento: this.signUpForm.value.fecha_nacimiento,
-        direccion: this.signUpForm.value.direccion,
-        password: this.signUpForm.value.password,
-        role: 'usuario',
+      /*
+       * @params Datos del nuevo usuario obtenidos del formulario de registro.
+       * @description Llama al servicio de registro para crear un nuevo usuario.
+       */
+      let new_user = this.signUpService.signUpFn(
+        this.signUpForm.value.nombre,
+        this.signUpForm.value.apellido,
+        this.signUpForm.value.email,
+        this.signUpForm.value.fecha_nacimiento,
+        this.signUpForm.value.direccion,
+        this.signUpForm.value.password
+      );
+      if (new_user) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso',
+          text: 'Tu cuenta ha sido creada exitosamente',
+          confirmButtonText: 'Aceptar'
+        }).then(() => {
+          this.router.navigate(['sign-in']);
+        })
       }
-
-      this.signUpService.signUpFn(user);
     }
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error al registrarse, por favor revise los campos del formulario.',
+        showCancelButton: true,
+        theme: 'dark'
+      }).then(() => {
+        location.reload();
+      })
+    }
+
   }
 
+  /*
+   * @params Recibe el nombre del input de contraseña o confirmación de contraseña.
+   * @description Alterna la visibilidad de la contraseña o confirmación de contraseña según el input recibido.
+   */
   verPassword(input: string){
 
     if (input == 'password'){

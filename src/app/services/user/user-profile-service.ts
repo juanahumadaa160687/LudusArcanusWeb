@@ -9,13 +9,20 @@ import {FormGroup} from '@angular/forms';
 export class UserProfileService {
 
   users = JSON.parse(localStorage.getItem('users') || '[]');
+
+  // Variable que recibe el email del usuario a editar desde la ruta
   email = '';
 
   constructor( private router : Router, private activatedRoute : ActivatedRoute ) {
-    this.email = this.activatedRoute.snapshot.paramMap.get('email') || '';
+    this.email = this.activatedRoute.snapshot.params['email'];
   }
 
-
+  /*
+   * @params Recibe datos del usuario editado
+   * @description crea un nuevo usuario con los datos editados y reemplaza el usuario antiguo en el array de usuarios, luego actualiza el localStorage
+   * @return true si el usuario fue editado correctamente
+   * @usageNotes No todos los datos son editables, el password y el rol no se pueden editar desde esta función, ya que no se reciben como parámetros.
+   */
   editUser(nombre: string, apellido: string, email: string, fecha_nacimiento: string, direccion: string) {
 
     let old_user = this.users.find((user: any) => user.email === this.email);
@@ -34,36 +41,20 @@ export class UserProfileService {
     this.users.push(newUser);
     localStorage.setItem('users', JSON.stringify(this.users));
 
-    Swal.fire({
-      icon: 'success',
-      title: 'Perfil actualizado',
-      text: 'Los cambios se han guardado correctamente',
-      confirmButtonText: 'Aceptar',
-      theme: "dark"
-    }).then(() => {
-      this.router.navigate(['/user-profile/' + email]);
-    });
-
+    return true;
 
   }
 
+  /*
+   * @params Recibe el usuario actual a eliminar.
+   * @description Permite eliminar una cuenta de usuario del almacenamiento local, y actualizar el localStorage con el nuevo array de usuarios.
+   * Luego redirige al usuario a la página de inicio.
+   * @return void
+   */
   deleteUser(user: any){
 
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "¡No podrás revertir esto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '¡Sí, bórralo!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.users.splice(this.users.indexOf(user), 1);
-        localStorage.setItem('users', JSON.stringify(this.users));
-        this.router.navigate(['/home']);
-      }
-    });
+    this.users.splice(this.users.indexOf(user), 1);
+    localStorage.setItem('users', JSON.stringify(this.users));
 
   }
 

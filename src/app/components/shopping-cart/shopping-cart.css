@@ -7,6 +7,15 @@ table{
   }
 }
 
+a{
+  text-decoration: none;
+  color: var(--cffy-theme-primary-a40);
+}
+a:hover{
+  text-decoration: underline;
+  color: white;
+}
+
 #checkout {
   color: var(--cffy-theme-surface-a0);
   background-color: var(--cffy-theme-primary-a40);

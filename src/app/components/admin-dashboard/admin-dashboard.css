@@ -53,6 +53,12 @@ span{
   border: none;
 }
 
+.modal-content{
+  color: var(--cffy-theme-primary-a40);
+  background-color: var(--cffy-theme-surface-a10);
+  border: 1px solid var(--cffy-theme-primary-a40);
+}
+
 @media (max-width: 768px) {
   .card {
     width: 100%;

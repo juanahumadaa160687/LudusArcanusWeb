@@ -1,13 +1,13 @@
 <router-outlet>
   <br>
     <div class="container-fluid">
-      <div class="container d-flex flex-column" id="carro" style="height: 60vh">
+      <div class="container d-flex flex-column" id="carro" style="min-height: 60vh">
         <div class="container title p-1 mb-5 d-flex justify-content-start align-items-center">
           <h2>Carrito de Compras</h2>
         </div>
         <br>
-        <div class="d-flex justify-content-center align-items-center" style="width: 100%">
-          <table class="">
+        <div class="d-flex justify-content-center align-items-center flex-column" style="width: 100%">
+          <table class="" [ngClass]="{'d-none': carrito_compras.length === 0}" style="width: 100%">
             <thead>
             <tr>
               <th scope="col" style="color: var(--cffy-theme-primary-a40)">Producto</th>
@@ -22,12 +22,8 @@
                   <td>{{ producto.nombre_producto }}</td>
                   <td>{{ formatoCLP.format(producto.precio_producto) }}</td>
                   <td class="text-center">
-                    <button class="btn btn-danger btn-sm" (click)="shoppingCartService.deleteProduct(producto.id_producto)"><i class="bi bi-trash-fill"></i></button>
+                    <button class="btn btn-danger btn-sm" (click)="borrarProducto(producto.id_producto)"><i class="bi bi-trash-fill"></i></button>
                   </td>
-                </tr>
-              } @empty {
-                <tr>
-                  <td colspan="3" class="text-center">No hay productos en el carrito.</td>
                 </tr>
               }
             </tbody>
@@ -38,15 +34,18 @@
             </tr>
             </tfoot>
           </table>
+          <div class="d-flex justify-content-center align-items-center flex-column" [ngClass]="{'d-none': carrito_compras.length > 0}">
+            <h4 class="text-center">No hay productos en el carrito.</h4>
+            <p>
+              <a routerLink="/home" class="text-decoration-none">Volver a la tienda</a>
+            </p>
+          </div>
         </div>
         <br>
-        <div class="d-flex justify-content-end align-items-end" id="total_pagar">
-
-        </div>
         <br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start align-items-md-start flex-md-row-reverse">
-          <button class="btn pt-2 pb-2" id="checkout">Finalizar Compra</button>
-          <button class="btn limpiar pt-2 pb-2 me-2" id="btn_limpiar" (click)="shoppingCartService.clearCart()">Limpiar</button>
+          <button class="btn pt-2 pb-2" [ngClass]="{'d-none': carrito_compras.length === 0}" id="checkout">Finalizar Compra</button>
+          <button class="btn limpiar pt-2 pb-2 me-2" [ngClass]="{'d-none': carrito_compras.length === 0}" id="btn_limpiar" (click)="shoppingCartService.clearCart()">Limpiar</button>
         </div>
       </div>
     </div>

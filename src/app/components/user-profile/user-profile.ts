@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {RouterOutlet, Router, RouterLink, ActivatedRoute} from '@angular/router';
-import Swal from 'sweetalert2';
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-responsive-bs5';
 import {pedidos} from '../../../../public/data';
 import {UserProfileService} from '../../services/user/user-profile-service';
+import {formatoCLP} from '../../functions/currencyFormat';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,28 +18,33 @@ import {UserProfileService} from '../../services/user/user-profile-service';
 })
 export class UserProfile {
 
-  formatoCLP = new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP',
-    minimumFractionDigits: 0,
-  });
+  formatoCLP = formatoCLP;
+
+  // Variable que recibe el email del usuario desde la ruta
+  email: string = '';
 
   users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  user: any = {};
+  user: any;
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, protected userProfileService: UserProfileService) {
 
-    let email = this.activatedRoute.snapshot.paramMap.get('email') || '';
+    // Obtenemos el email del usuario desde la ruta y buscamos el usuario en el array de usuarios
+    this.email = this.activatedRoute.snapshot.params['email'];
 
-    this.user = this.users.filter((user: any) => user.email === email)[0] || {};
+    this.user = this.users.find((user: any) => user.email === this.email);
 
   }
 
 
   ngOnInit() {
 
+    /*
+     * @params Array de pedidos que se obtiene desde el archivo data.ts
+     * @description Inicializamos la tabla de pedidos con DataTables y configuramos las columnas y los datos
+     * recibidos desde el array de pedidos. Se formatea el precio a CLP y se asigna un color al estado del pedido.
+     */
     let table = new DataTable('#pedidosTable', {
       responsive: true,
       paging: true,

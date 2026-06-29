@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {RouterOutlet, Router, RouterLink} from '@angular/router';
-import {users, productos} from '../../../../public/data'
-import {Producto} from '../producto/producto';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +12,7 @@ import {Producto} from '../producto/producto';
   styleUrl: './home.css',
 })
 export class Home {
+  
 
   constructor(private router: Router) {}
 

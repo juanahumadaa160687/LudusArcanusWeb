@@ -165,6 +165,24 @@ export const productos = [
     stock_producto: 4,
     imagen_producto: 'd&d-manual-monstruos.webp',
     descripcion_producto: 'El manual presenta una horda de criaturas clásicas de Dungeons and Dragons, incluyendo dragones, gigantes, flayers mentales y beholders, una fiesta monstruosa para Dungeon Masters dispuestos a desafiar a sus jugadores y poblar sus aventuras.',
+  },
+  {
+    id_producto: 17,
+    nombre_producto: 'Dungeons & Dragons Fizban\'s Treasury of Dragons',
+    categoria_producto: 'juegos-rol',
+    precio_producto: 9990,
+    stock_producto: 3,
+    imagen_producto: 'd&d-fizbans.webp',
+    descripcion_producto: 'Dungeons & Dragons Fizban\'s Treasury of Dragons es un juego de mesa ambientado en el mundo de Krynn. Los jugadores pueden explorar la historia de Fizban, enfrentarse a dragones y vivir aventuras épicas.'
+  },
+  {
+    id_producto: 17,
+    nombre_producto: 'Dungeons & Dragons Manual de Monstruos',
+    categoria_producto: 'juegos-rol',
+    precio_producto: 9990,
+    stock_producto: 4,
+    imagen_producto: 'd&d-manual-monstruos.webp',
+    descripcion_producto: 'El manual presenta una horda de criaturas clásicas de Dungeons and Dragons, incluyendo dragones, gigantes, flayers mentales y beholders, una fiesta monstruosa para Dungeon Masters dispuestos a desafiar a sus jugadores y poblar sus aventuras.',
   }
 ]
 

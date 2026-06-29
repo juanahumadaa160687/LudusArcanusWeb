@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +9,13 @@ export class ShoppingCartService {
 
   carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
 
+  count = this.carrito.length;
+
+  /*
+   * @params Recibe el ID del producto que se desea agregar al carrito.
+   * @description Permite agregar un producto al carrito de compras si hay stock disponible. Actualiza el carrito en el almacenamiento local.
+   * @returns Retorna true si el producto fue agregado al carrito, false si no se pudo agregar (por ejemplo, si no hay stock disponible).
+   */
   buyProduct(id: number){
 
     let producto = this.productos.find((producto: any) => producto.id_producto === id);
@@ -19,54 +25,38 @@ export class ShoppingCartService {
 
       localStorage.setItem('carrito', JSON.stringify(this.carrito));
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Producto agregado correctamente',
-        timer: 3500,
-        theme: 'dark'
-      }).then(() => {
-        location.reload();
-      })
+      return true;
     }
-    else {
 
-      Swal.fire({
-        icon: 'warning',
-        title: 'Producto no disponible',
-        timer: 3500,
-        theme: 'dark'
-      }).then(() => {
-        location.reload();
-      })
-    }
+    return false;
   }
 
+  /*
+   * @params Recibe el ID del producto que se desea eliminar del carrito.
+   * @description Permite eliminar un producto del carrito de compras. Actualiza el carrito en el almacenamiento local.
+   * @returns Retorna true si el producto fue eliminado del carrito, false si no se pudo eliminar (por ejemplo, si el producto no estaba en el carrito).
+   */
   deleteProduct(id: number){
 
     let producto = this.productos.find((producto: any) => producto.id_producto === id);
 
     if (producto) {
 
-      Swal.fire({
-        icon: 'warning',
-        title: '¿Estas seguro de eliminar el producto del carrito?',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminarlo',
-        theme: 'dark'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.carrito.splice(this.carrito.indexOf(producto), 1);
-          localStorage.setItem('carrito', JSON.stringify(this.carrito));
-          location.reload();
-        }
-      })
+      this.carrito.splice(this.carrito.indexOf(producto), 1);
+      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+
+      return true
     }
+    return false;
   }
 
+  /*
+   * @description Permite vaciar el carrito de compras eliminando todos los productos del mismo. Actualiza el carrito en el almacenamiento local y recarga la página para reflejar los cambios.
+   */
   clearCart(): void {
-    this.carrito = [];
     localStorage.removeItem('carrito');
     location.reload();
   }
+
 
 }

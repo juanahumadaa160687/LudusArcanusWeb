@@ -11,18 +11,17 @@ import {AdminDashboard} from './components/admin-dashboard/admin-dashboard';
 import {UserProfile} from './components/user-profile/user-profile';
 import {EditProfile} from './components/edit-profile/edit-profile';
 import {ForgotPassword} from './components/forgot-password/forgot-password';
-import {JuegosMesa} from './components/juegos-mesa/juegos-mesa';
-import {JuegosCartas} from './components/juegos-cartas/juegos-cartas';
-import {JuegosRol} from './components/juegos-rol/juegos-rol';
 import {NotFound} from './components/not-found/not-found';
 import {authGuard} from './guards/auth-guard';
+import {adminGuard} from './guards/admin-guard';
+
 
 export const routes: Routes = [
 
   {
     path: 'home',
     component: Home,
-    title: 'Ludus Arcanus - Tienda de Juegos de Mesa, Cartas y Rol',
+    title: 'Ludus Arcanus',
   },
   {
     path: '',
@@ -33,23 +32,6 @@ export const routes: Routes = [
     path: 'categoria/:categoria',
     component: Categorias,
     title: 'Categorías',
-    children: [
-      {
-        path: 'juegos-mesa',
-        component: JuegosMesa,
-        title: 'Juegos de Mesa'
-      },
-      {
-        path: 'juegos-cartas',
-        component: JuegosCartas,
-        title: 'Juegos de Cartas'
-      },
-      {
-        path: 'juegos-rol',
-        component: JuegosRol,
-        title: 'Juegos de Rol'
-      }
-    ]
   },
   {
     path: 'producto/:id',
@@ -70,7 +52,6 @@ export const routes: Routes = [
     path: 'shopping-cart',
     component: ShoppingCart,
     title: 'Carrito de Compras',
-    canActivate: [authGuard]
   },
   {
     path: 'privacidad',
@@ -86,7 +67,7 @@ export const routes: Routes = [
     path: 'administradores',
     component: AdminDashboard,
     title: 'Administradores',
-    canActivate: [authGuard]
+    canActivate: [adminGuard]
   },
   {
     path: 'profile/:email',

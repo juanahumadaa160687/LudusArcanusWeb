@@ -11,6 +11,11 @@ export class RecoverPassword {
 
   constructor(private router: Router) {}
 
+  /*
+   * @params Recibe el email y la nueva contraseña del usuario.
+   * @description Busca el usuario por email y si existe, actualiza la contraseña con la nueva proporcionada.
+   * @returns Retorna true si el usuario existe y la contraseña se actualizó, de lo contrario retorna false.
+   */
   recoverPassword(email: string, password: string) {
 
     let existing_user = this.users.find((u: any) => u.email === email);
@@ -31,17 +36,10 @@ export class RecoverPassword {
       this.users.push(new_user);
       localStorage.setItem('users', JSON.stringify(this.users));
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Contraseña cambiada',
-        text: 'Contraseña cambiada con éxito',
-        showConfirmButton: true,
-        theme: 'dark',
-      }).then(() => {
-        this.router.navigate(['/sign-in']);
-      })
+      return true;
 
     }
+    return false;
 
   }
 

@@ -8,15 +8,18 @@ describe('TermnsConditions', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TermnsConditions],
+      imports: [TermnsConditions]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TermnsConditions);
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
-  it('should create', () => {
+  /*
+   * @description Verifica si el componente se ha creado correctamente.
+   */
+  it('should create component instance', () => {
     expect(component).toBeTruthy();
   });
+
 });

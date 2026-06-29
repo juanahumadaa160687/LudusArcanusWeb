@@ -20,10 +20,9 @@
               <li><a class="dropdown-item" routerLink="/categoria/juegos-rol">Juegos de Rol</a></li>
             </ul>
           </li>
-
           @if (user_role == 'administrador') {
             <li class="nav-item">
-              <a class="nav-link" routerLink="/administradores" tabindex="-1">Bienvenido {{user_email}}</a>
+              <a class="nav-link bienvenida_admin" routerLink="/administradores" tabindex="-1">{{full_name}}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="#" tabindex="-1" role="button" (click)="cerrarSesion()">Cerrar Sesión</a>
@@ -31,10 +30,9 @@
 
           } @else if (user_role == 'usuario') {
 
-
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Bienvenido {{user_email}}
+              <a class="bienvenida_user nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{full_name}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" routerLink="/profile">Ver Perfil</a></li>
@@ -42,10 +40,6 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="nav-link" routerLink="#" tabindex="-1" role="button" (click)="cerrarSesion()">Cerrar Sesión</a></li>
               </ul>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/carrito" id="carro"><i class="bi bi-cart4"></i></a>
             </li>
 
           } @else {
@@ -56,14 +50,24 @@
               <a class="nav-link" routerLink="/sign-up" tabindex="-1">Registrarse</a>
             </li>
           }
+          <li class="nav-item position-relative">
+            <a class="nav-link " routerLink="/shopping-cart" id="carro" [ngClass]="{'d-none': carrito === 0}"><i class="bi bi-cart4" style="font-size: 19px"></i>
+              <span class="badge rounded-circle bg-danger border border-light translate-middle start-100" style="position: absolute; top: 10px; font-size: 12px">
+                  {{carrito}}
+                <span class="visually-hidden">Carrito de compras</span>
+                </span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 </header>
+<br>
 
 <router-outlet />
 
+<br>
 <footer class="text-center text-lg-start text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4" id="redes">
     <div class="me-5 d-none d-lg-block">

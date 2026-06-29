@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
-import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,10 @@ export class SignInService {
 
   constructor(private router: Router) { }
 
+  /*
+   * @params Recibe el email y la contraseña del usuario que intenta iniciar sesión.
+   * @returns Devuelve true si el usuario existe y la contraseña es correcta, de lo contrario devuelve false.
+   */
   signIn(email: string, password: string) {
 
     let user = this.users.find((u: any) => u.email === email);
@@ -20,44 +24,30 @@ export class SignInService {
       sessionStorage.setItem('email', user.email);
       sessionStorage.setItem('role', user.role);
 
-      this.router.navigate(['/home']);
-
-    } else {
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Email o password incorrectos',
-        text: 'Intenta nuevamente',
-        confirmButtonText: 'Aceptar',
-        theme: "dark"
-      }).then(() => {
-        location.reload();
-      });
+      return true;
     }
+    return false;
   }
 
+  /*
+   * @params Recibe el email del usuario que desea recuperar su contraseña.
+   * @returns Devuelve true si el usuario existe, de lo contrario devuelve false.
+   */
   passwordRecovery(email: string) {
 
     let user = this.users.find((u: any) => u.email === email);
 
     if (user) {
-      sessionStorage.setItem('email', user.email);
-      this.router.navigate(['/reset-password/' + email]);
-    }
-    else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Correo electrónico no encontrado',
-        text: 'Intenta nuevamente',
-        confirmButtonText: 'Aceptar',
-        theme: 'dark',
-      }).then(() => {
-        location.reload();
-      });
-    }
 
+      return true;
+    }
+    return false;
   }
 
+  /*
+   * @params Recibe el email del usuario que desea obtener sus datos.
+   * @returns Devuelve los datos del usuario si existe, de lo contrario devuelve null.
+   */
   loggedUser(email: string) {
     let user = this.users.find((u: any) => u.email === email);
     if (user) {
@@ -66,10 +56,19 @@ export class SignInService {
     return null;
   }
 
+  /*
+   * @description Permite saber si el usuario está logueado o no, verificando si existe un email en el sessionStorage.
+   * @returns Devuelve true si el usuario está logueado, de lo contrario devuelve false.
+   */
   isLoggedIn() {
-    if(sessionStorage.getItem('email')){
+
+    let loggedUser = sessionStorage.getItem('email') || '';
+    let roleUser = sessionStorage.getItem('role') || '';
+
+    if (loggedUser && roleUser == 'administrador') {
       return true;
     }
     return false;
   }
+
 }
