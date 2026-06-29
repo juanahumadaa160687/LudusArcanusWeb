@@ -13,7 +13,7 @@ let users = JSON.parse(localStorage.getItem('users') || '[]');
  */
 export function emailExistsValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const email = control.value;
+    const email = control.value
     const emailExists = users.some((user: any) => user.email === email);
     return emailExists ? { emailExists: true } : null;
   }
@@ -30,8 +30,8 @@ export function emailExistsValidator(): ValidatorFn {
  */
 export function passwordNotMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password')?.value;
-    const confirmPassword = control.get('confirmPassword')?.value;
+    const password = control.root.get('password')?.value;
+    const confirmPassword = control.value;
     return password !== confirmPassword ? { passwordNotMatch: true } : null;
   }
 }

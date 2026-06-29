@@ -4,12 +4,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {passwordNotMatchValidator} from '../../functions/validators';
 import {RecoverPassword} from '../../services/password/recover-password';
 import Swal from 'sweetalert2';
+import {SignUpService} from '../../services/sign-up/sign-up-service';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password',
   imports: [
     RouterOutlet,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgClass
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css',
@@ -24,6 +27,9 @@ export class ForgotPassword {
   // Variable que recibe el email del usuario desde params.
   user_email: string = '';
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private recoverPasswordService: RecoverPassword) {
 
     this.user_email = this.activatedRoute.snapshot.params['email'];
@@ -37,8 +43,8 @@ export class ForgotPassword {
      */
     this.changePasswordForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,18}$')]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: passwordNotMatchValidator() });
+      confirmPassword: ['', [Validators.required, passwordNotMatchValidator()]]
+    });
   }
 
   /*
@@ -82,6 +88,16 @@ export class ForgotPassword {
         })
       }
 
+    }
+  }
+
+  togglePasswordVisibility(input: string) {
+
+    if (input === 'password') {
+      this.showPassword = !this.showPassword;
+    }
+    else if (input === 'confirmPassword') {
+      this.showConfirmPassword = !this.showConfirmPassword;
     }
 
   }

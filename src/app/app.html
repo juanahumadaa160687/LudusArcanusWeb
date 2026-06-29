@@ -35,8 +35,8 @@
                 {{full_name}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" routerLink="/profile">Ver Perfil</a></li>
-                <li><a class="dropdown-item" routerLink="/editar-perfil/{{email}}">Editar Perfil</a></li>
+                <li><a class="dropdown-item" routerLink="/profile/{{email}}">Ver Perfil</a></li>
+                <li><a class="dropdown-item" routerLink="/edit-profile/{{email}}">Editar Perfil</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="nav-link" routerLink="#" tabindex="-1" role="button" (click)="cerrarSesion()">Cerrar Sesión</a></li>
               </ul>
@@ -63,11 +63,9 @@
     </div>
   </nav>
 </header>
-<br>
 
 <router-outlet />
 
-<br>
 <footer class="text-center text-lg-start text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4" id="redes">
     <div class="me-5 d-none d-lg-block">

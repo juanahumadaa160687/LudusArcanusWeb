@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="input-group">
-                    <button type="button" class="btn btn-secondary" (click)="signUpService.showPassword('password', hidePassword)">
+                    <button type="button" class="btn btn-secondary" (click)="hidePassword = !hidePassword">
                       <i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                     </button>
                     <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Contraseña" name="admin_password" formControlName="adminPassword" required>
@@ -72,17 +72,13 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="input-group">
-                    <button type="button" class="btn btn-secondary" (click)="signUpService.showPassword('confirmPassword', hidePassword)">
-                      <i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+                    <button type="button" class="btn btn-secondary" (click)="hideConfirmPassword = !hideConfirmPassword">
+                      <i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                     </button>
-                    <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">
+                    <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" placeholder="Confirma tu contraseña" name="admin_confirm_password" formControlName="adminConfirmPassword">
                   </div>
 
-                  @if (adminForm.get('adminConfirmPassword')?.hasError('required') && adminForm.get('adminConfirmPassword')?.touched) {
-                    <p>
-                      <small class="text-danger">**Este campo es obligatorio</small>
-                    </p>
-                  } @else if (adminForm.hasError('passwordMismatch')) {
+                  @if (adminForm.hasError('passwordMismatch')) {
                     <p>
                       <small class="text-danger">**Las contraseñas no coinciden</small>
                     </p>

@@ -42,13 +42,13 @@
                     <small class="text-danger">**Este campo es obligatorio.</small>
                   </p>
                 }
-                @else if (signUpForm.get('email')?.hasError('email')) {
+                @else if (signUpForm.get('email')?.hasError('email') && signUpForm.get('email')?.touched) {
                   <p>
-                    <small class="text-danger">**Ingrese un correo electrónico válido.</small>
+                    <small class="text-danger">**Ingrese un email válido.</small>
                   </p>
-                } @else if (signUpForm.get('email')?.hasError('emailExists')) {
+                } @else if (signUpForm.get('email')?.hasError('emailExists') && signUpForm.get('email')?.touched) {
                   <p>
-                    <small class="text-danger">**Este correo electrónico ya está registrado.</small>
+                    <small class="text-danger">**Este email ya está registrado.</small>
                   </p>
                 }
               </div>
@@ -60,11 +60,11 @@
                   <p>
                     <small class="text-danger">**Este campo es obligatorio.</small>
                   </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('edadMinima')) {
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('edadMin') && signUpForm.get('fecha_nacimiento')?.touched) {
                   <p>
                     <small class="text-danger">**Debes tener al menos 13 años para registrarte.</small>
                   </p>
-                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('fechaFuturo')) {
+                } @else if (signUpForm.get('fecha_nacimiento')?.hasError('fechaFuturo') && signUpForm.get('fecha_nacimiento')?.touched) {
                   <p>
                     <small class="text-danger">**La fecha de nacimiento no puede ser en el futuro.</small>
                   </p>
@@ -80,29 +80,28 @@
 
               <div class="col-md-6">
                 <div class="input-group">
-                  <button class="btn" type="button" (click)="verPassword('password')"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <button class="btn" type="button" (click)="hidePassword = !hidePassword"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                   <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
                 </div>
                 @if (signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched) {
                   <p>
                     <small class="text-danger">**Este campo es obligatorio.</small>
                   </p>
-                } @else if (signUpForm.get('password')?.hasError('pattern')) {
+                } @else if (signUpForm.get('password')?.hasError('pattern') && signUpForm.get('password')?.touched) {
                   <p>
-                    <small class="text-danger">**La contraseña debe tener entre 6 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).</small>
+                    <small class="text-danger">**La contraseña debe tener entre 6 y 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).</small>
                   </p>
                 }
                 <div class="form-text">
-                  La contraseña debe tener entre 6 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).
+                  La contraseña debe tener entre 6 y 18 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número y un caracter especial (&#64;$!%*?&).
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="input-group">
-                  <button class="btn" type="button"><i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                  <button class="btn" type="button" (click)="hideConfirmPassword = !hideConfirmPassword"><i class="bi" [ngClass]="hideConfirmPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                   <input [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
                 </div>
-
                 @if (signUpForm.get('confirmPassword')?.hasError('passwordNotMatch') && signUpForm.get('confirmPassword')?.touched) {
                   <p>
                     <small class="text-danger">*Las contraseñas no coinciden.</small>

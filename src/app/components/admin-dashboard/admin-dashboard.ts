@@ -45,6 +45,7 @@ export class AdminDashboard {
    * @description Variable de tipo booleano para mostrar u ocultar la contraseña en el formulario de registro de administrador.
    */
   hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(private router: Router, private formBuilder: FormBuilder, protected signUpService: SignUpService, private dashboardService: DashboardService) {
 
@@ -246,9 +247,7 @@ export class AdminDashboard {
       }).then(() => {
         location.reload();
       });
-
     }
-
   }
 
 }

@@ -71,4 +71,15 @@ export class SignInService {
     return false;
   }
 
+  isLoggedInUser() {
+
+    let loggedUser = sessionStorage.getItem('email') || '';
+    let roleUser = sessionStorage.getItem('role') || '';
+
+    if (loggedUser && roleUser == 'usuario') {
+      return true;
+    }
+    return false;
+  }
+
 }

@@ -111,14 +111,4 @@ export class SignIn {
     }
   }
 
-  /*
-   * @description Permite mostrar u ocultar la contraseña en el formulario de inicio de sesión.
-   * Cambia la variable hidePassword a su valor contrario, lo que permite alternar entre mostrar y ocultar la contraseña.
-   * En el HTML, se utiliza esta variable para cambiar el tipo de input entre "password" y "text", y también para cambiar el icono del ojo.
-   * @usageNotes Se utiliza para mostrar u ocultar la contraseña cuando el usuario hace clic en el icono de ojo.
-   */
-  verPassword(){
-    this.hidePassword = !this.hidePassword;
-  }
-
 }

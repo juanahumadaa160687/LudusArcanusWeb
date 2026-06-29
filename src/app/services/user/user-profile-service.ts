@@ -10,11 +10,9 @@ export class UserProfileService {
 
   users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  // Variable que recibe el email del usuario a editar desde la ruta
-  email = '';
+  user_email = sessionStorage.getItem('email') || '';
 
   constructor( private router : Router, private activatedRoute : ActivatedRoute ) {
-    this.email = this.activatedRoute.snapshot.params['email'];
   }
 
   /*
@@ -25,7 +23,7 @@ export class UserProfileService {
    */
   editUser(nombre: string, apellido: string, email: string, fecha_nacimiento: string, direccion: string) {
 
-    let old_user = this.users.find((user: any) => user.email === this.email);
+    let old_user = this.users.find((user: any) => user.email === this.user_email);
 
     let newUser = {
       nombre: nombre,
@@ -55,6 +53,7 @@ export class UserProfileService {
 
     this.users.splice(this.users.indexOf(user), 1);
     localStorage.setItem('users', JSON.stringify(this.users));
+    return true;
 
   }
 

@@ -47,8 +47,8 @@ export class SignUp {
       fecha_nacimiento: ['', [Validators.required, fechaFuturoValidator(), edadMinValidator()]],
       direccion: [''],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,18}$')]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: passwordNotMatchValidator() });
+      confirmPassword: ['', [Validators.required, passwordNotMatchValidator()]]
+    });
   }
 
   /*
@@ -96,20 +96,5 @@ export class SignUp {
     }
 
   }
-
-  /*
-   * @params Recibe el nombre del input de contraseña o confirmación de contraseña.
-   * @description Alterna la visibilidad de la contraseña o confirmación de contraseña según el input recibido.
-   */
-  verPassword(input: string){
-
-    if (input == 'password'){
-      this.hidePassword = !this.hidePassword;
-    }
-    else{
-      this.hideConfirmPassword = !this.hideConfirmPassword;
-    }
-
-  }
-
+  
 }

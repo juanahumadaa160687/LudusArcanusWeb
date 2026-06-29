@@ -29,32 +29,22 @@ describe('ForgotPassword', () => {
    * @description Verifica la validación de la fortaleza y coincidencia de las contraseñas
    */
   it('should validate password strength and matching', () => {
-    const passwordControl = component.changePasswordForm.get('password');
-    const confirmPasswordControl = component.changePasswordForm.get('confirmPassword');
 
-    /*
-     * @description Prueba de validación de fortaleza de contraseña y coincidencia.
-     * @usageNotes Para ser válida, debe cumplir con el largo (6-18), contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.
-     */
-    passwordControl?.setValue('weak');
-    confirmPasswordControl?.setValue('weak');
+    component.changePasswordForm.controls['password'].setValue('weak');
+    component.changePasswordForm.controls['confirmPassword'].setValue('weak');
+
     expect(component.changePasswordForm.valid).toBeFalsy();
 
-    /*
-     * @description Prueba de validación de fortaleza de contraseña y coincidencia.
-     * Ambas contraseñas coinciden y cumplen con los criterios ya mencionados, por lo que el formulario debe ser válido.
-     */
-    passwordControl?.setValue('Abc123$$');
-    confirmPasswordControl?.setValue('Abc123$$');
+    component.changePasswordForm.controls['password'].setValue('StrongPass1!');
+    component.changePasswordForm.controls['confirmPassword'].setValue('StrongPass2!');
+
+    expect(component.changePasswordForm.valid).toBeFalsy();
+
+    component.changePasswordForm.controls['password'].setValue('StrongPass1!');
+    component.changePasswordForm.controls['confirmPassword'].setValue('StrongPass1!');
+
     expect(component.changePasswordForm.valid).toBeTruthy();
 
-    /*
-     * @description Prueba de contraseñas no coincidentes.
-     * Revisa si el password y su confirmación coinciden. En este caso, aunque la contraseña es fuerte, las contraseñas no coinciden, por lo que el formulario debe ser inválido.
-     */
-    passwordControl?.setValue('StrongPass1!');
-    confirmPasswordControl?.setValue('DifferentPass1!');
-    expect(component.changePasswordForm.valid).toBeFalsy();
   });
 
 });

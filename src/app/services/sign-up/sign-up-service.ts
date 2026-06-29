@@ -36,20 +36,4 @@ export class SignUpService {
     return true;
   }
 
-  /*
-   * @params Recibe en nombre del input: string (password o confirmPassword), y un booleano.
-   * @description Permite mostrar u ocultar la contraseña en el input correspondiente.
-   * @returns Retorna el booleano invertido.
-   */
-  showPassword(input_name: string, hide_password: boolean) {
-
-    if (input_name === 'password') {
-      hide_password = !hide_password;
-    }
-    else if (input_name === 'confirmPassword') {
-      hide_password = !hide_password;
-    }
-
-  }
-
 }

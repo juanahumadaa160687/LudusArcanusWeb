@@ -72,4 +72,15 @@ export class UserProfile {
 
   }
 
+  borrarUsuario(user: any) {
+
+    let result = this.userProfileService.deleteUser(user);
+
+    if (result) {
+      sessionStorage.setItem('users', JSON.stringify(result));
+      location.href="/home";
+    }
+
+  }
+
 }

@@ -12,5 +12,5 @@ export const authGuard: CanActivateFn = (route, state) => {
    * @description Verifica que el usuario esté logueado y tenga el rol de usuario. Si no cumple con estas condiciones, muestra un mensaje de error y recarga la página.
    * @return {boolean} Retorna true si el usuario está logueado y es usuario, de lo contrario retorna false.
    */
-  return authService.isLoggedIn() ? true : false;
+  return authService.isLoggedInUser()
 };

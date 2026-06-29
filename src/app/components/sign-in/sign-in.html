@@ -59,7 +59,7 @@
 
                   <div class="col-12 d-flex justify-content-center align-items-center flex-column mb-5">
                     <div class="input-group">
-                      <button class="btn" type="button" (click)="verPassword()"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
+                      <button class="btn" type="button" (click)="hidePassword = !hidePassword"><i class="bi" [ngClass]="hidePassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i></button>
                       <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="inputPassword" formControlName="password" placeholder="Contraseña">
                     </div>
                     @if (signInForm.get('password')?.hasError('required') && signInForm.get('password')?.touched) {

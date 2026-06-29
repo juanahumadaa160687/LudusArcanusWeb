@@ -49,8 +49,12 @@ describe('SignUp', () => {
    */
   it('should validate date', () => {
     component.signUpForm.controls['fecha_nacimiento'].setValue('2026-10-01')
-
     expect(component.signUpForm.controls['fecha_nacimiento'].valid).toBeFalsy();
+
+    component.signUpForm.controls['fecha_nacimiento'].setValue('2000-10-01')
+    expect(component.signUpForm.controls['fecha_nacimiento'].valid).toBeTruthy();
+
+
   });
 
   /*
@@ -76,20 +80,24 @@ describe('SignUp', () => {
    * @description Verifica si las contraseñas ingresadas coinciden.
    */
   it('should validate password mismatch', () => {
+
     component.signUpForm.controls['password'].setValue('StrongPass1!')
     component.signUpForm.controls['confirmPassword'].setValue('DifferentPass1!')
 
-    expect(component.signUpForm.controls['confirmPassword'].valid).toBeTruthy();
+    expect(component.signUpForm.valid).toBeFalsy();
+
   });
 
   /*
    * @description Verifica si el correo electrónico ingresado ya existe.
    */
   it('should validate email exists', () => {
-    component.signUpForm.controls['email'].setValue('anemail@mail.com')
 
-    expect(component.signUpForm.controls['email'].valid).toBeTruthy();
-  })
+    component.signUpForm.controls['email'].setValue('jdoe@mail.com');
+
+    expect(component.signUpForm.valid).toBeFalsy();
+
+  });
 
   /*
    * @description Verifica si el formulario de registro es válido cuando todos los campos están correctamente llenados.

@@ -35,10 +35,14 @@ describe('UserProfileService', () => {
       apellido: 'Doe',
       email: 'jdoe@mail.com',
       fecha_nacimiento: '1990-01-01',
-      direccion: ''
+      direccion: '',
+      password: '1223444',
+      role: 'usuario'
     }
 
     service.users = [oldUser];
+
+    service.user_email = 'jdoe@mail.com'
 
     service.editUser('Jane', 'Doe', 'jdoe@mail.com', '1990-01-01', '123 Main St');
 

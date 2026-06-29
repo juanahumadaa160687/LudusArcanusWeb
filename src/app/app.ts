@@ -3,6 +3,7 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgClass, NgOptimizedImage} from '@angular/common';
 import {SignInService} from './services/auth/sign-in';
 import {ShoppingCartService} from './services/cart/shopping-cart';
+import {users} from '../../public/data';
 
 @Component({
   selector: 'app-root',
@@ -48,11 +49,12 @@ export class App {
     }
 
     // Efecto para actualizar la cantidad de productos en el carrito de compras cuando se agregan o eliminan productos del mismo
+    // Si el carrito tiene 0 productos, el ícono del carrito de compras no se mostrará en la barra de navegación.
     effect(() => {
       this.count.set(this.carrito);
     });
   }
-  
+
   /*
    * @description Cierra la sesión del usuario, limpiando el sessionStorage y redirigiendo al usuario a la página de inicio.
    */

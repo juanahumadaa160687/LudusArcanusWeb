@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
 import {SignInService} from '../services/auth/sign-in';
 import { authGuard } from './auth-guard';
 
 describe('authGuard', () => {
 
-  let mockAuthService: { isLoggedIn: ReturnType<typeof vi.fn> };
+  let mockAuthService: { isLoggedInUser: ReturnType<typeof vi.fn> };
   let mockRouter: { parseUrl: ReturnType<typeof vi.fn> };
 
   const dummyRoute = {} as ActivatedRouteSnapshot;
   const dummyState = {} as RouterStateSnapshot;
 
   beforeEach(() => {
-    mockAuthService = { isLoggedIn: vi.fn() };
+    mockAuthService = { isLoggedInUser: vi.fn() };
     mockRouter = { parseUrl: vi.fn() };
 
     TestBed.configureTestingModule({
@@ -35,7 +35,7 @@ describe('authGuard', () => {
    */
   it('should allow access for authenticated users', () => {
 
-    mockAuthService.isLoggedIn.mockReturnValue(true);
+    mockAuthService.isLoggedInUser.mockReturnValue(true);
 
     const result = TestBed.runInInjectionContext(() =>
       authGuard(dummyRoute, dummyState)

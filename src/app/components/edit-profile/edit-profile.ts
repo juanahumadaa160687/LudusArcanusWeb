@@ -78,7 +78,7 @@ export class EditProfile {
           confirmButtonText: 'Aceptar',
           theme: "dark"
         }).then(() => {
-          this.router.navigate(['/user-profile/' + this.editUserForm.controls['email'].value]);
+          this.router.navigate(['/profile/' + this.editUserForm.controls['email'].value]);
         });
       }
       else {
@@ -92,36 +92,5 @@ export class EditProfile {
       }
     }
   }
-
-  /*
-   *
-   * @description Elimina al usuario, borrando el user del localStorage y redirigiendo al home.
-   * Utiliza el servicio UserProfileService deleteUser(), que recibe al user, para eliminarlo.
-   *
-   */
-  eliminarUsuario(){
-
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "¡No podrás revertir esto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '¡Sí, bórralo!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userProfileService.deleteUser(this.user);
-        Swal.fire(
-          '¡Eliminado!',
-          'Tu perfil ha sido eliminado.',
-          'success',
-        ).then(() => {
-          this.router.navigate(['/home']);
-        });
-      }
-    });
-
-  }
-
+  
 }
