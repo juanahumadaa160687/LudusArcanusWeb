@@ -41,7 +41,7 @@ export class SignIn {
     });
 
     this.forgotPasswordForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email_password: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -61,8 +61,7 @@ export class SignIn {
 
       if (sign_in) {
         location.href = '/home';
-      }
-      else {
+      } else {
 
         Swal.fire({
           icon: 'error',
@@ -91,24 +90,21 @@ export class SignIn {
    * @description Navega a la página de recuperación de contraseña con el email del usuario como parámetro en la URL.
    */
   navigateToForgotPassword() {
-    if (this.forgotPasswordForm.errors === null) {
 
-      let forgot_password = this.signInService.passwordRecovery(this.forgotPasswordForm.get('email')?.value);
-      if (forgot_password) {
-        this.router.navigate(['/reset-password/' + this.forgotPasswordForm.get('email')?.value]);
-      }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Correo electrónico no encontrado',
-          text: 'Intenta nuevamente',
-          confirmButtonText: 'Aceptar',
-          theme: 'dark',
-        }).then(() => {
-          location.reload();
-        });
-      }
+    let forgot_password = this.signInService.passwordRecovery(this.forgotPasswordForm.get('email_password')?.value);
+
+    if (forgot_password) {
+      this.router.navigate(['/reset-password/' + this.forgotPasswordForm.get('email_password')?.value]);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Correo electrónico no encontrado',
+        text: 'Intenta nuevamente',
+        confirmButtonText: 'Aceptar',
+        theme: 'dark',
+      }).then(() => {
+        location.reload();
+      });
     }
   }
-
 }

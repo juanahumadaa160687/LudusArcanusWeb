@@ -22,7 +22,6 @@ describe('SignIn', () => {
 
     fixture = TestBed.createComponent(SignIn);
     component = fixture.componentInstance;
-    fixture.detectChanges();
 
   });
 
@@ -60,11 +59,11 @@ describe('SignIn', () => {
    * @description Verifica que el email ingresado para la recuperación de contraseña sea válido.
    */
   it('should validate recover password email', () => {
-    component.forgotPasswordForm.controls['email'].setValue('invalid-email');
-    expect(component.forgotPasswordForm.controls['email'].valid).toBeFalsy();
+    component.forgotPasswordForm.controls['email_password'].setValue('invalid-email');
+    expect(component.forgotPasswordForm.controls['email_password'].valid).toBeFalsy();
 
-    component.forgotPasswordForm.controls['email'].setValue('jdoe@mail.com');
-    expect(component.forgotPasswordForm.controls['email'].valid).toBeTruthy();
+    component.forgotPasswordForm.controls['email_password'].setValue('jdoe@mail.com');
+    expect(component.forgotPasswordForm.controls['email_password'].valid).toBeTruthy();
   })
 
 });

@@ -67,7 +67,7 @@ export function edadMinValidator(): ValidatorFn {
     const fecha = new Date(control.value);
     const today = new Date();
     const edad = today.getFullYear() - fecha.getFullYear();
-    return edad < 13 ? { edadMin: true } : null;
+    return edad < 13 && edad >= 0 ? { edadMin: true } : null;
   }
 }
 
