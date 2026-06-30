@@ -56,6 +56,15 @@ export class SignInService {
     return null;
   }
 
+  isSignedIn(): boolean {
+
+    let user = sessionStorage.getItem('email') || '';
+    if (user) {
+      return true;
+    }
+    return false;
+  }
+
   /*
    * @description Permite saber si el usuario está logueado o no, verificando si existe un email en el sessionStorage.
    * @returns Devuelve true si el usuario está logueado, de lo contrario devuelve false.

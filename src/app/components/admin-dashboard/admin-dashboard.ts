@@ -129,7 +129,7 @@ export class AdminDashboard {
             item.descripcion_producto,
             formatoCLP.format(item.precio_producto),
             `<span class="badge border border-light ${item.stock_producto >= 10 ? 'bg-success' : item.stock_producto >= 5 ? 'bg-warning' : 'bg-danger'}">${item.stock_producto}</span>`,
-            `<button type="button" class="btn btn-danger" (click)="dashboardService.deleteProducto(${item.id_producto})"><i class="bi bi-trash"></i></button>`
+            `<button type="button" class="btn btn-danger" (click)="delProducto(${item.id_producto})"><i class="bi bi-trash"></i></button>`
           ]
         })
     });
@@ -233,7 +233,8 @@ export class AdminDashboard {
    * @description Función que se ejecuta al eliminar un producto.
    * Llama al servicio para eliminar el producto y si lo elimina, muestra un mensaje de éxito.
    */
-  deleteProducto(id: number) {
+
+  delProducto(id: number) {
 
     let deleted_product = this.dashboardService.deleteProducto(id);
 

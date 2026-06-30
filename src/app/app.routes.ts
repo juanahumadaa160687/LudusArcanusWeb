@@ -14,6 +14,7 @@ import {ForgotPassword} from './components/forgot-password/forgot-password';
 import {NotFound} from './components/not-found/not-found';
 import {authGuard} from './guards/auth-guard';
 import {adminGuard} from './guards/admin-guard';
+import {loggedUserGuard} from './guards/logged-user-guard';
 
 
 export const routes: Routes = [
@@ -42,11 +43,13 @@ export const routes: Routes = [
     path: 'sign-in',
     component: SignIn,
     title: 'Iniciar Sesión',
+    canActivate: [loggedUserGuard]
   },
   {
     path: 'sign-up',
     component: SignUp,
-    title: 'Registrarse'
+    title: 'Registrarse',
+    canActivate: [loggedUserGuard]
   },
   {
     path: 'shopping-cart',

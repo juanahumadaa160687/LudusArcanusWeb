@@ -12,6 +12,6 @@ export const adminGuard: CanActivateFn = (route, state) => {
    * @description Verifica que el usuario esté logueado y tenga el rol de administrador. Si no cumple con estas condiciones, muestra un mensaje de error y redirige a la página de inicio.
    * @returns {boolean} Retorna true si el usuario está logueado y es administrador, de lo contrario retorna false.
    */
-  return adminService.isLoggedIn() ? true : router.createUrlTree(['/administradores']);
+  return adminService.isLoggedIn() ? true : router.createUrlTree(['/home']);
 
 };

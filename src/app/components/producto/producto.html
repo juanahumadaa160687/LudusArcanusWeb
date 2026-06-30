@@ -18,14 +18,8 @@
 
           <p><strong>Precio:</strong> {{ formatoCLP.format(producto.precio_producto) }}</p>
 
-          @if (signInService.isLoggedIn() && producto.stock_producto > 0) {
-            <button class="buy" (click)="addProducto()"><i class="bi bi-cart4"></i> Comprar</button>
-          } @else if (producto.stock_producto === 0) {
-            <p>Producto agotado.</p>
-          }
-          @else {
-            <p>Debes iniciar sesión para comprar este producto. Inicia Sesión <a routerLink="/login">aquí</a>.</p>
-          }
+
+          <button class="buy" (click)="addProducto()"><i class="bi bi-cart4"></i> Comprar</button>
 
         </div>
       </div>

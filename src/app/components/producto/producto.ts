@@ -1,5 +1,5 @@
-import {Component, SimpleChanges} from '@angular/core';
-import {RouterOutlet, Router, ActivatedRoute, RouterLink} from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet, Router, ActivatedRoute} from '@angular/router';
 import {NgOptimizedImage} from '@angular/common';
 import {ShoppingCartService} from '../../services/cart/shopping-cart';
 import {SignInService} from '../../services/auth/sign-in';
@@ -11,7 +11,6 @@ import {formatoCLP} from '../../functions/currencyFormat';
   imports: [
     RouterOutlet,
     NgOptimizedImage,
-    RouterLink,
   ],
   templateUrl: './producto.html',
   styleUrl: './producto.css',

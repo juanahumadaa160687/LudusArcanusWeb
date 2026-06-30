@@ -52,7 +52,7 @@ export class ForgotPassword {
    */
   onSubmit() {
 
-    if (this.changePasswordForm.errors == null) {
+    if (this.changePasswordForm.valid) {
 
       const password = this.changePasswordForm.get('password')?.value;
 
@@ -73,6 +73,7 @@ export class ForgotPassword {
           showConfirmButton: true,
           theme: 'dark',
         }).then(() => {
+          sessionStorage.clear();
           this.router.navigate(['/sign-in']);
         })
       }
@@ -90,6 +91,11 @@ export class ForgotPassword {
 
     }
   }
+
+  /*
+   * @params nombre del input que se quiere mostrar u ocultar (password o confirmPassword)
+   * @description Función que permite mostrar u ocultar el password y el confirmPassword en el formulario de cambio de contraseña.
+   */
 
   togglePasswordVisibility(input: string) {
 

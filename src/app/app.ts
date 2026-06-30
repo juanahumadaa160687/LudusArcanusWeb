@@ -3,7 +3,6 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgClass, NgOptimizedImage} from '@angular/common';
 import {SignInService} from './services/auth/sign-in';
 import {ShoppingCartService} from './services/cart/shopping-cart';
-import {users} from '../../public/data';
 
 @Component({
   selector: 'app-root',
